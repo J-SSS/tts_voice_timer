@@ -1,125 +1,82 @@
 import 'package:flutter/material.dart';
+// import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:my_time_timer/manager/db_manager.dart';
+// import 'package:my_time_timer/manager/prefs_manager.dart';
+import 'package:tts_voice_timer/my_app.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  // CustomBinding 사용법 찾아보기
+  CustomWidgetsBinding();
+
+  // Flutter 엔진과의 바인딩을 보장 > SharedPreferences, Firebase, MediaQuery 등의 의존성을 안전하게 사용할 수 있게 함
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // SharedPreferences 초기화
+  // await PrefsManager.instance.init();
+  //
+  //
+  // await DbManager.instance.init();
+
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      // 상태바를 완전 투명하게
+      statusBarColor: Colors.white,
+      // 아이콘 색상 (Light 면 흰색 아이콘, Dark 면 검정 아이콘)
+      statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.dark, // iOS 상태바 텍스트 색
+    ),
+  );
+
+  // todo SQLite 초기화 코드 추가
+
+  // SystemChrome은 Flutter에서 디바이스의 시스템 UI(상태바, 내비게이션 바 등)를 제어하기 위해 제공되는 클래스
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp, // 세로로 고정
+  // ]).then((_) {
+  //   // runApp(DevicePreview( // todo 찾아보기
+  //   //   // enabled: !kReleaseMode, // todo 찾아보기
+  //   //   enabled: false,
+  //   //   builder: (context) => ScreenUtilInit(
+  //   //     designSize: const Size(360, 690), // 기준 화면 크기
+  //   //     minTextAdapt: true,
+  //   //     splitScreenMode: true,
+  //   //     builder: (context, child) {
+  //   //       // print('??');
+  //   //       return MyApp(prefs: prefs);
+  //   //     },
+  //   //   ), // Wrap your app
+  //   // ),);
+  //
+  //   runApp(DevicePreview( // todo 찾아보기
+  //     // enabled: !kReleaseMode, // todo 찾아보기
+  //     enabled: false,
+  //     builder: (context) => MyApp(), // Wrap your app
+  //   ),);
+  // });
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  // This widget is the root of your application.
+class CustomWidgetsBinding extends WidgetsFlutterBinding {
+  /*
+  WidgetsFlutterBinding은 Flutter에서 위젯 시스템과 Flutter 엔진 간의 브리지 역할을 하는 클래스입니다.
+  이 클래스는 위젯 트리 초기화, 앱 라이프사이클 관리, 플랫폼 이벤트 처리, 화면 렌더링 등과 같은 Flutter의 핵심적인 기능을 관리합니다.
+  */
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+  void initInstances() {
+    super.initInstances();
+    // 커스텀 초기화 작업
+    print('CustomWidgetsBinding initialized!');
   }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+  void handleAppLifecycleStateChanged(AppLifecycleState state) {
+    super.handleAppLifecycleStateChanged(state);
+    // 앱 라이프사이클 이벤트를 감지하고 처리
+    print('AppLifecycleState changed: $state');
   }
 }
