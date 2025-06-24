@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
-import '../../utils/app_utils.dart';
-import '../../utils/size_util.dart';
+import '../../../utils/app_utils.dart';
+import '../../../utils/size_util.dart';
 
 
-class MainBottomBar extends StatefulWidget {
-  const MainBottomBar({super.key});
+class ComonBottomBar extends StatefulWidget {
+  const ComonBottomBar({super.key});
 
   @override
-  State<MainBottomBar> createState() => _MainBottomBarState();
+  State<ComonBottomBar> createState() => _MainBottomBarState();
 }
 
-class _MainBottomBarState extends State<MainBottomBar> {
+class _MainBottomBarState extends State<ComonBottomBar> {
   @override
   Widget build(BuildContext context) {
     return Stack(

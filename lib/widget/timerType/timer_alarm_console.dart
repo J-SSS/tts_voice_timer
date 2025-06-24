@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
 // import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../../utils/app_utils.dart';
-import '../../utils/common_values.dart';
-import '../../utils/size_util.dart';
+import '../../../utils/app_utils.dart';
+import '../../../utils/common_values.dart';
+import '../../../utils/size_util.dart';
 
 
-class MainConsole extends StatefulWidget {
-  const MainConsole({Key? key}) : super(key: key);
+class TimerAlarmConsole extends StatefulWidget {
+  const TimerAlarmConsole({Key? key}) : super(key: key);
 
   @override
-  State<MainConsole> createState() => _MainToolbarState();
+  State<TimerAlarmConsole> createState() => _MainToolbarState();
 }
 
-class _MainToolbarState extends State<MainConsole> {
+class _MainToolbarState extends State<TimerAlarmConsole> {
 
   @override
   Widget build(BuildContext context) {

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:tts_voice_timer/utils/size_util.dart';
-import 'package:tts_voice_timer/widget/main_bottom_bar.dart';
-import 'package:tts_voice_timer/widget/main_console.dart';
-import 'package:tts_voice_timer/widget/main_mid.dart';
-import 'package:tts_voice_timer/widget/main_title_bar.dart';
-import 'package:tts_voice_timer/widget/topBar/main_top_bar.dart';
+import 'package:tts_voice_timer/widget/common/comon_bottom_bar.dart';
+import 'package:tts_voice_timer/widget/timerType/timer_alarm_console.dart';
+import 'package:tts_voice_timer/widget/timerType/timer_time_console.dart';
+import 'package:tts_voice_timer/widget/common/common_title_bar.dart';
+import 'package:tts_voice_timer/widget/common/common_app_bar.dart';
 
 import 'etc/adMobService.dart';
 // import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
@@ -27,9 +27,9 @@ import 'etc/adMobService.dart';
 // import 'package:my_time_timer/utils/size_util.dart';
 // import 'package:my_time_timer/viewModels/timer_view_model.dart';
 // import 'package:my_time_timer/repository/timer_repository.dart';
-// import 'package:my_time_timer/widgets/bottomBar/main_bottom_bar.dart';
+// import 'package:my_time_timer/widgets/bottomBar/comon_bottom_bar.dart';
 // import 'package:my_time_timer/widgets/topBar/create_timer_top_bar.dart';
-// import 'package:my_time_timer/widgets/topBar/main_top_bar.dart';
+// import 'package:my_time_timer/widgets/topBar/common_app_bar.dart';
 // import 'package:my_time_timer/widgets/my_app_bar.dart';
 // import 'package:my_time_timer/widgets/timer_loader.dart';
 //
@@ -133,13 +133,11 @@ class MyAppMain extends StatelessWidget {
       // backgroundColor: scaffoldBackgroundColorLight,
       body: SafeArea(
           child: Column(
-
             children: [
-              Container( // 임시
+              /* AppBar */
+              SizedBox(
                   height: SizeUtil().sh075,
-                  // color: Colors.green.withOpacity(0.15),
-                  alignment: Alignment.center,
-                  child: const MainToolbar()
+                  child: const CommonAppBar()
               ),
               Container( // 임시
                   height: SizeUtil().sh075,
@@ -147,7 +145,7 @@ class MyAppMain extends StatelessWidget {
                   // color: Colors.blue.withOpacity(0.1),
                   // alignment: Alignment.bottomCenter,
                   alignment: Alignment.center,
-                  child: const MainTitlebar(),
+                  child: const CommonTitleBar(),
                   // child: ConstrainedBox(
                   //     // constraints: BoxConstraints(maxWidth: SizeUtil().sw90),
                   //     constraints: null,
@@ -173,20 +171,20 @@ class MyAppMain extends StatelessWidget {
                 height: SizeUtil().sh40,
                 // color: Colors.green.withOpacity(0.15),
                 alignment: Alignment.center,
-                child: const MainMid()
+                child: const TimerTimeConsole()
               ),
               Container( // 임시
                 // height: SizeUtil().sh35,
                 height: SizeUtil().sh25,
                 // color: Colors.green.withOpacity(0.15),
                 alignment: Alignment.center,
-                child: const MainConsole(),
+                child: const TimerAlarmConsole(),
               ),
               Container( // 임시
                 height: SizeUtil().sh10,
                 // color: Colors.red.withOpacity(0.15),
                 alignment: Alignment.center,
-                child: const MainBottomBar(),
+                child: const ComonBottomBar(),
               ),
               Container( // 임시
                 height: SizeUtil().sh10,

@@ -4,18 +4,18 @@ import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
 
 // import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../../utils/app_utils.dart';
-import '../../utils/common_values.dart';
-import '../../utils/size_util.dart';
+import '../../../utils/app_utils.dart';
+import '../../../utils/common_values.dart';
+import '../../../utils/size_util.dart';
 
-class MainMid extends StatefulWidget {
-  const MainMid({Key? key}) : super(key: key);
+class TimerTimeConsole extends StatefulWidget {
+  const TimerTimeConsole({Key? key}) : super(key: key);
 
   @override
-  State<MainMid> createState() => _MainToolbarState();
+  State<TimerTimeConsole> createState() => _MainToolbarState();
 }
 
-class _MainToolbarState extends State<MainMid> {
+class _MainToolbarState extends State<TimerTimeConsole> {
   TimeOfDay? _selectedTime;
   String _selectedTimeText = "";
 
