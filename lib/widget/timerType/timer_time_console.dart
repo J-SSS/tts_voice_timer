@@ -46,7 +46,7 @@ class _MainToolbarState extends State<TimerTimeConsole> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround, // 균일한 간격으로 배치
               children: [
-                ElevatedButton(
+                TextButton(
                   onPressed: () {},
                   child: Icon(
                     Icons.keyboard_double_arrow_up_rounded,
@@ -54,7 +54,7 @@ class _MainToolbarState extends State<TimerTimeConsole> {
                     color: Colors.blueGrey,
                   ),
                 ),
-                ElevatedButton(
+                TextButton(
                   onPressed: () {},
                   child: Icon(
                     Icons.keyboard_double_arrow_up_rounded,
@@ -62,7 +62,7 @@ class _MainToolbarState extends State<TimerTimeConsole> {
                     color: Colors.blueGrey,
                   ),
                 ),
-                ElevatedButton(
+                TextButton(
                   onPressed: () {},
                   child: Icon(
                     Icons.keyboard_double_arrow_up_rounded,
@@ -75,7 +75,7 @@ class _MainToolbarState extends State<TimerTimeConsole> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround, // 균일한 간격으로 배치
               children: [
-                ElevatedButton(
+                OutlinedButton(
                   onPressed: () {},
                   child: Icon(
                     Icons.keyboard_arrow_up_rounded,
@@ -83,7 +83,7 @@ class _MainToolbarState extends State<TimerTimeConsole> {
                     color: Colors.blueGrey,
                   ),
                 ),
-                ElevatedButton(
+                OutlinedButton(
                   onPressed: () {},
                   child: Icon(
                     Icons.keyboard_arrow_up_rounded,
@@ -91,7 +91,7 @@ class _MainToolbarState extends State<TimerTimeConsole> {
                     color: Colors.blueGrey,
                   ),
                 ),
-                ElevatedButton(
+                OutlinedButton(
                   onPressed: () {},
                   child: Icon(
                     Icons.keyboard_arrow_up_rounded,
@@ -134,20 +134,12 @@ class _MainToolbarState extends State<TimerTimeConsole> {
                         fontWeight: FontWeight.bold,
                         color: Colors.blueGrey),
                     textAlign: TextAlign.center),
-                // Align(
-                //   child: Text("00 : 00 : 00",
-                //       style: TextStyle(
-                //           fontSize: SizeUtil().sh10 * 0.8,
-                //           fontWeight: FontWeight.bold,
-                //           color: Colors.blueGrey),
-                //       textAlign: TextAlign.center),
-                // ),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround, // 균일한 간격으로 배치
               children: [
-                ElevatedButton(
+                OutlinedButton(
                   onPressed: () {},
                   child: Icon(
                     Icons.keyboard_arrow_down_outlined,
@@ -155,7 +147,7 @@ class _MainToolbarState extends State<TimerTimeConsole> {
                     color: Colors.blueGrey,
                   ),
                 ),
-                ElevatedButton(
+                OutlinedButton(
                   onPressed: () {},
                   child: Icon(
                     Icons.keyboard_arrow_down_outlined,
@@ -163,7 +155,7 @@ class _MainToolbarState extends State<TimerTimeConsole> {
                     color: Colors.blueGrey,
                   ),
                 ),
-                ElevatedButton(
+                OutlinedButton(
                   onPressed: () {},
                   child: Icon(
                     Icons.keyboard_arrow_down_outlined,
@@ -176,7 +168,7 @@ class _MainToolbarState extends State<TimerTimeConsole> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround, // 균일한 간격으로 배치
               children: [
-                ElevatedButton(
+                TextButton(
                   onPressed: () {},
                   child: Icon(
                     Icons.keyboard_double_arrow_down_rounded,
@@ -184,7 +176,7 @@ class _MainToolbarState extends State<TimerTimeConsole> {
                     color: Colors.blueGrey,
                   ),
                 ),
-                ElevatedButton(
+                TextButton(
                   onPressed: () {},
                   child: Icon(
                     Icons.keyboard_double_arrow_down_rounded,
@@ -192,7 +184,7 @@ class _MainToolbarState extends State<TimerTimeConsole> {
                     color: Colors.blueGrey,
                   ),
                 ),
-                ElevatedButton(
+                TextButton(
                   onPressed: () {},
                   child: Icon(
                     Icons.keyboard_double_arrow_down_rounded,
