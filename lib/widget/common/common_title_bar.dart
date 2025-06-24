@@ -27,7 +27,7 @@ class _MainToolbarState extends State<CommonTitleBar> {
           width: SizeUtil().sw,
           height: SizeUtil().sh05,
           padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-          // alignment: Alignment.topCenter,
+          // alignment: Alignment.center,
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.8),
             // color: Colors.red,
@@ -43,24 +43,36 @@ class _MainToolbarState extends State<CommonTitleBar> {
           ),
           child : Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("새 음성 타이머",
-                  style: TextStyle(
-                      fontSize: SizeUtil().sh10 / 4,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blueGrey),
-                  textAlign: TextAlign.center),
-            // TextButton( /** 우 버튼 */
-              //     onPressed: () {
-              //     },
-              //     style: ElevatedButton.styleFrom(
-              //       shape: const CircleBorder(),
-              //       // padding: EdgeInsets.all(10.0),
-              //       // fixedSize: Size(55.0, 55.0),
-              //     ),
-              //     // child: Icon(MaterialCommunityIcons.chevron_right_circle,size: 35,),
-              //     child: Icon(MaterialCommunityIcons.view_list,size: 35,),
-              // ),
+              TextButton.icon(
+                onPressed: () {},
+                icon: Icon(MaterialCommunityIcons.pencil,size: 18,color: Colors.grey,),//format_paint,
+                // label:   Text("새 음성 타이머")
+                label:   Text("새 음성 타이머",style: TextStyle(fontSize: 22),),
+                // label:   Text("새 음성 타이머",
+                //     style: TextStyle(
+                //         fontSize: SizeUtil().sh075 / 3,
+                //         fontWeight: FontWeight.bold,
+                //         color: Colors.blueGrey),
+                //     textAlign: TextAlign.center),
+                style: OutlinedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2), // 내부 여백 줄이기
+                  minimumSize: Size(0, 0), // 최소 크기 제한 해제
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
+                ),
+              ),
+            // TextButton(
+            //       onPressed: () {
+            //       },
+            //       style: ElevatedButton.styleFrom(
+            //         shape: const CircleBorder(),
+            //         // padding: EdgeInsets.all(10.0),
+            //         // fixedSize: Size(55.0, 55.0),
+            //       ),
+            //       // child: Icon(MaterialCommunityIcons.chevron_right_circle,size: 35,),
+            //       child: Icon(MaterialCommunityIcons.view_list,size: 35,),
+            //   ),
             ],
           )
       );

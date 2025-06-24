@@ -38,24 +38,74 @@ class _MainToolbarState extends State<CommonAppBar> {
           child : Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("(타이머) / (스톱워치) / (인터벌)",
-                  style: TextStyle(
-                      fontSize: SizeUtil().sh10 / 4,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blueGrey),
-                  textAlign: TextAlign.center),
+              OutlinedButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.timelapse,size: 20),
+                label: Text('타이머'),
+                style: OutlinedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8), // 내부 여백 줄이기
+                  // minimumSize: Size(0, 0), // 최소 크기 제한 해제
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
+                ),
+              ),
+              // SizedBox(height: 16),
+              TextButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.timer,size: 20),
+                label: Text('스톱워치'),
+                style: OutlinedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8), // 내부 여백 줄이기
+                  // minimumSize: Size(0, 0), // 최소 크기 제한 해제
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
+                ),
+              ),
+              // SizedBox(height: 10),
+              TextButton.icon(
+                onPressed: () {},
+                icon: Icon(MaterialCommunityIcons.repeat,size: 20),//format_paint,
+                label: Text('인터벌'),
+                style: OutlinedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8), // 내부 여백 줄이기
+                  // minimumSize: Size(0, 0), // 최소 크기 제한 해제
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
+                ),
+              ),
+              // SizedBox(height: 15),
+              TextButton.icon(
+                onPressed: () {},
+                icon: Icon(MaterialCommunityIcons.alarm,size: 20,),//format_paint,
+                label: Text('알람'),
+                style: OutlinedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8), // 내부 여백 줄이기
+                  // minimumSize: Size(0, 0), // 최소 크기 제한 해제
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
+                ),
+              ),
 
-            // TextButton( /** 우 버튼 */
-              //     onPressed: () {
-              //     },
-              //     style: ElevatedButton.styleFrom(
-              //       shape: const CircleBorder(),
-              //       // padding: EdgeInsets.all(10.0),
-              //       // fixedSize: Size(55.0, 55.0),
-              //     ),
-              //     // child: Icon(MaterialCommunityIcons.chevron_right_circle,size: 35,),
-              //     child: Icon(MaterialCommunityIcons.view_list,size: 35,),
+              // ElevatedButton.icon(
+              //   onPressed: () {},
+              //   icon: Icon(Icons.thumb_up),
+              //   label: Text('타이머'),
               // ),
+              // SizedBox(height: 16),
+              // OutlinedButton.icon(
+              //   onPressed: () {},
+              //   icon: Icon(Icons.send),
+              //   label: Text('스톱워치'),
+              // ),
+              // SizedBox(height: 16),
+              // TextButton.icon(
+              //   onPressed: () {},
+              //   icon: Icon(Icons.info),
+              //   label: Text('인터벌'),
+              // ),
+
+              // Text("(타이머) / (스톱워치) / (인터벌)",
+              //     style: TextStyle(
+              //         fontSize: SizeUtil().sh10 / 4,
+              //         fontWeight: FontWeight.bold,
+              //         color: Colors.blueGrey),
+              //     textAlign: TextAlign.center),
             ],
           )
       );
