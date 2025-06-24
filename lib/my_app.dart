@@ -192,6 +192,7 @@ class MyAppMain extends StatelessWidget {
                 height: SizeUtil().sh10,
                 color: Colors.white,
                 // alignment: Alignment.center,
+                child: AdWidget(ad: _bannerAd,)
               ),
             ],
           ),
