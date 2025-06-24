@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:my_time_timer/manager/db_manager.dart';
 // import 'package:my_time_timer/manager/prefs_manager.dart';
@@ -14,6 +15,8 @@ Future<void> main() async {
 
   // Flutter 엔진과의 바인딩을 보장 > SharedPreferences, Firebase, MediaQuery 등의 의존성을 안전하게 사용할 수 있게 함
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize(); //광고 초기화
+
 
   // SharedPreferences 초기화
   // await PrefsManager.instance.init();

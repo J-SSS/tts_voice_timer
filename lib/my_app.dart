@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:tts_voice_timer/utils/size_util.dart';
+import 'package:tts_voice_timer/widget/main_bottom_bar.dart';
+import 'package:tts_voice_timer/widget/main_console.dart';
+import 'package:tts_voice_timer/widget/main_mid.dart';
+import 'package:tts_voice_timer/widget/main_title_bar.dart';
 import 'package:tts_voice_timer/widget/topBar/main_top_bar.dart';
+
+import 'etc/adMobService.dart';
 // import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:my_time_timer/main.dart';
@@ -111,6 +118,16 @@ class MyAppMain extends StatelessWidget {
      */
     WidgetsBinding.instance.addPostFrameCallback((_) {}); // print('초기화');
 
+
+    BannerAd? _bannerAd; //추가
+    _bannerAd = BannerAd(
+      size: AdSize.fullBanner, //배너 사이즈
+      adUnitId: AdMobService.bannerAdUnitId!, //광고ID 등록
+      listener: AdMobService.bannerAdListener, //리스너 등록
+      request: const AdRequest(),
+    )..load();
+
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       // backgroundColor: scaffoldBackgroundColorLight,
@@ -119,17 +136,18 @@ class MyAppMain extends StatelessWidget {
 
             children: [
               Container( // 임시
-                  height: SizeUtil().sh10,
-                  color: Colors.green.withOpacity(0.15),
+                  height: SizeUtil().sh075,
+                  // color: Colors.green.withOpacity(0.15),
                   alignment: Alignment.center,
                   child: const MainToolbar()
               ),
               Container( // 임시
-                  height: SizeUtil().sh10,
+                  height: SizeUtil().sh075,
                   width: SizeUtil().sw,
-                  color: Colors.blue.withOpacity(0.1),
+                  // color: Colors.blue.withOpacity(0.1),
                   // alignment: Alignment.bottomCenter,
                   alignment: Alignment.center,
+                  child: const MainTitlebar(),
                   // child: ConstrainedBox(
                   //     // constraints: BoxConstraints(maxWidth: SizeUtil().sw90),
                   //     constraints: null,
@@ -153,24 +171,32 @@ class MyAppMain extends StatelessWidget {
               ),
               Container( // 임시
                 height: SizeUtil().sh40,
-                color: Colors.green.withOpacity(0.15),
+                // color: Colors.green.withOpacity(0.15),
                 alignment: Alignment.center,
-
+                child: const MainMid()
               ),
               Container( // 임시
-                height: SizeUtil().sh30,
-                color: Colors.red.withOpacity(0.15),
+                // height: SizeUtil().sh35,
+                height: SizeUtil().sh25,
+                // color: Colors.green.withOpacity(0.15),
                 alignment: Alignment.center,
+                child: const MainConsole(),
               ),
-              Container( // 임시 > 광고 위치
+              Container( // 임시
                 height: SizeUtil().sh10,
-                color: Colors.yellow.withOpacity(0.15),
+                // color: Colors.red.withOpacity(0.15),
                 alignment: Alignment.center,
+                child: const MainBottomBar(),
+              ),
+              Container( // 임시
+                height: SizeUtil().sh10,
+                color: Colors.white,
+                // alignment: Alignment.center,
               ),
             ],
           ),
-      )
 
+      ),
     );
   }
 }

@@ -49,8 +49,12 @@ class SizeUtil {
   late double sh10;
   late double sh15;
   late double sh20;
+  late double sh25;
   late double sh30;
+  late double sh35;
   late double sh40;
+  late double sh45;
+  late double sh50;
   late double sh65;
   late double sh70;
   late double sh75;
@@ -106,7 +110,11 @@ class SizeUtil {
     sh15 = sh * 0.15;
     sh20 = sh * 0.2;
     sh30 = sh * 0.3;
+    sh25 = sh * 0.25;
+    sh35 = sh * 0.35;
     sh40 = sh * 0.4;
+    sh45 = sh * 0.45;
+    sh50 = sh * 0.5;
     sh65 = sh * 0.65;
     sh70 = sh * 0.7;
     sh75 = sh * 0.75;

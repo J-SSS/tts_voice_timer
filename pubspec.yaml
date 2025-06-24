@@ -31,12 +31,16 @@ dependencies:
   flutter:
     sdk: flutter
 
+  google_mobile_ads: ^5.3.1 # 구글 모바일 광고 SDK
   provider: ^6.0.2 # 상태관리 라이브러리 provider
-  flutter_icons_null_safety: ^1.1.0
+  flutter_icons_null_safety: ^1.1.0 # Flutter 아이콘 라이브러리 (null safety 지원)
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+
+
+
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +63,44 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    #    - assets/img/
+    - assets/icon/
+    - assets/fonts/
+  fonts:
+    - family: NanumSquareNeo
+      fonts:
+        - asset: assets/fonts/NanumSquareNeo-aLt.ttf
+          weight: 100
+        - asset: assets/fonts/NanumSquareNeo-bRg.ttf
+          weight: 300
+        - asset: assets/fonts/NanumSquareNeo-cBd.ttf
+          weight: 500
+        - asset: assets/fonts/NanumSquareNeo-dEb.ttf
+          weight: 700
+        - asset: assets/fonts/NanumSquareNeo-eHv.ttf
+          weight: 900
+    - family: Pretendard
+      fonts:
+        - asset: assets/fonts/Pretendard-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Pretendard-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Pretendard-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Pretendard-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Pretendard-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Pretendard-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Pretendard-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Pretendard-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Pretendard-Black.ttf
+          weight: 900
 
   # To add assets to your application, add an assets section, like this:
   # assets:

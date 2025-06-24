@@ -8,14 +8,14 @@ import '../../utils/common_values.dart';
 import '../../utils/size_util.dart';
 
 
-class MainToolbar extends StatefulWidget {
-  const MainToolbar({Key? key}) : super(key: key);
+class MainTitlebar extends StatefulWidget {
+  const MainTitlebar({Key? key}) : super(key: key);
 
   @override
-  State<MainToolbar> createState() => _MainToolbarState();
+  State<MainTitlebar> createState() => _MainToolbarState();
 }
 
-class _MainToolbarState extends State<MainToolbar> {
+class _MainToolbarState extends State<MainTitlebar> {
 
   TimeOfDay? _selectedTime;
   String _selectedTimeText = "";
@@ -25,13 +25,13 @@ class _MainToolbarState extends State<MainToolbar> {
   Widget build(BuildContext context) {
     return Container(
           width: SizeUtil().sw,
-          height: SizeUtil().sh075,
+          height: SizeUtil().sh05,
           padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
           // alignment: Alignment.topCenter,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.white.withOpacity(0.8),
             // color: Colors.red,
-            borderRadius: BorderRadius.circular(00),
+            borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
                 color: Colors.blueGrey.withOpacity(0.3),
@@ -44,15 +44,12 @@ class _MainToolbarState extends State<MainToolbar> {
           child : Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Align(
-              child: Text("(타이머) / (스톱워치) / (인터벌)",
+              Text("기본 타이머",
                   style: TextStyle(
                       fontSize: SizeUtil().sh10 / 4,
                       fontWeight: FontWeight.bold,
                       color: Colors.blueGrey),
                   textAlign: TextAlign.center),
-            ),
-
             // TextButton( /** 우 버튼 */
               //     onPressed: () {
               //     },
