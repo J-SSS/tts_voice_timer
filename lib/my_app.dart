@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import 'package:tts_voice_timer/models/timer_model.dart';
+import 'package:tts_voice_timer/provider/timer_controller.dart';
 import 'package:tts_voice_timer/utils/size_util.dart';
 import 'package:tts_voice_timer/widget/common/comon_bottom_bar.dart';
 import 'package:tts_voice_timer/widget/timerType/timer_alarm_console.dart';
@@ -51,41 +53,33 @@ class MyApp extends StatelessWidget {
 
     // todo 프로바이더는 리빌드 안됨 > 초기화 메서드들 옮기기
 
-    // return MultiProvider(
-    //   providers: [
-    //     // ChangeNotifierProvider(create: (context) => TimerViewModel(), lazy: false,), // shared preference & sqlite // todo 얘는 프로바이더 안써도될거같음
-    //     // ChangeNotifierProvider(create: (context) => TimerController(), lazy: false), // isolate timer
-    //     // ChangeNotifierProvider(create: (context) => AppConfigController()),
-    //     // ChangeNotifierProvider(create: (context) => CreateTimerController()), // 타이머 생성 및 수정 화면
-    //   ],
-    //   child: MaterialApp(
-    //     title: 'My Time Timer',
-    //       theme: ThemeData(
-    //         fontFamily: 'Pretendard',
-    //         dividerColor: Colors.transparent,
-    //         // expansionTileTheme: ExpansionTileThemeData(
-    //         //   // tilePadding : EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
-    //         //   // childrenPadding : EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
-    //         //   backgroundColor: Colors.grey[200],
-    //         //   textColor: Colors.blue,
-    //         // ),
-    //       ),
-    //     home:  const MyAppMain()),
-    // );
+    // provider 문법 예시
+    // read : context.read<TimerController>().setSetupTime = clickToTime;
+    // watch : context.watch<AppConfigController>().isOnTimerBottomViewYn
+    // select : TimerModel timerModel = context.select((CreateTimerController T) => T.timerModel);
 
-    return MaterialApp(
+
+    return MultiProvider(
+      providers: [
+        // ChangeNotifierProvider(create: (context) => TimerViewModel(), lazy: false,), // shared preference & sqlite // todo 얘는 프로바이더 안써도될거같음
+        ChangeNotifierProvider(create: (context) => TimerController(), lazy: false), // isolate timer
+        // ChangeNotifierProvider(create: (context) => AppConfigController()),
+        // ChangeNotifierProvider(create: (context) => CreateTimerController()), // 타이머 생성 및 수정 화면
+      ],
+      child: MaterialApp(
         title: 'My Time Timer',
-        theme: ThemeData(
-          fontFamily: 'Pretendard',
-          dividerColor: Colors.transparent,
-          // expansionTileTheme: ExpansionTileThemeData(
-          //   // tilePadding : EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
-          //   // childrenPadding : EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
-          //   backgroundColor: Colors.grey[200],
-          //   textColor: Colors.blue,
-          // ),
-        ),
-        home:  const MyAppMain());
+          theme: ThemeData(
+            fontFamily: 'Pretendard',
+            dividerColor: Colors.transparent,
+            // expansionTileTheme: ExpansionTileThemeData(
+            //   // tilePadding : EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+            //   // childrenPadding : EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+            //   backgroundColor: Colors.grey[200],
+            //   textColor: Colors.blue,
+            // ),
+          ),
+        home:  const MyAppMain()),
+    );
   }
 }
 
@@ -128,6 +122,9 @@ class MyAppMain extends StatelessWidget {
     )..load();
 
 
+    TimerModel timerModel = TimerModel();
+    context.read<TimerController>().setCurrentTimer = timerModel; //
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       // backgroundColor: scaffoldBackgroundColorLight,
@@ -139,13 +136,11 @@ class MyAppMain extends StatelessWidget {
                   height: SizeUtil().sh075,
                   child: const CommonAppBar()
               ),
-              Container( // 임시
-                  height: SizeUtil().sh075,
-                  width: SizeUtil().sw,
-                  // color: Colors.blue.withOpacity(0.1),
-                  // alignment: Alignment.bottomCenter,
-                  alignment: Alignment.center,
-                  child: const CommonTitleBar(),
+              // Container( // 임시
+              //     height: SizeUtil().sh075,
+              //     width: SizeUtil().sw,
+              //     alignment: Alignment.center,
+              //     child: const CommonTitleBar(),
                   // child: ConstrainedBox(
                   //     // constraints: BoxConstraints(maxWidth: SizeUtil().sw90),
                   //     constraints: null,
@@ -166,13 +161,19 @@ class MyAppMain extends StatelessWidget {
                   //         )
                   //     )
                   // )
-              ),
+              // ),
               Container( // 임시
                 height: SizeUtil().sh40,
                 // color: Colors.green.withOpacity(0.15),
                 alignment: Alignment.center,
                 child: const TimerTimeConsole()
               ),
+              Container( // 임시
+                height: SizeUtil().sh075,
+                width: SizeUtil().sw,
+                alignment: Alignment.center,
+                child: const CommonTitleBar(),)
+              ,
               Container( // 임시
                 // height: SizeUtil().sh35,
                 height: SizeUtil().sh25,
