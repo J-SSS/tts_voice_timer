@@ -26,14 +26,14 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
           // biteRadius: 50,
           elevation: 5.0,
           // color: Colors.yellow.withOpacity(0.9),
-          color: Colors.white60.withOpacity(0.9),
+          color: Colors.white,
           child: Container( // 완전한 네모 영역
               decoration: BoxDecoration(
                 // color: Colors.green.withOpacity(0.6),
               ),
               width: SizeUtil().sw,
               // height: SizeUtil().sh10,
-              height: SizeUtil().sh25 * 0.97,
+              height: SizeUtil().sh225 * 0.97,
               // padding: const EdgeInsets.all(16.0),
 
               child: Column(
@@ -46,28 +46,133 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                       // color: Colors.red.withOpacity(0.1),
                     ),
                     // color: Colors.red.withOpacity(0.1),
-                    height: SizeUtil().sh25 * 0.97 - SizeUtil().sh15 * 0.4 * 1.2,
+                    height: SizeUtil().sh225 * 0.97 - SizeUtil().sh15 * 0.4 * 1.2,
                     width: 500,
                     // width: SizeUtil().sw - (SizeUtil().sh15 * 1.08), // 플로팅버튼 부분과 구분해주기 위함(SizeUtil().sw - SizeUtil().sh15 * 0.6 - SizeUtil().sh15 * 0.48)
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      // crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Text("시작 카운트"),
-                        // Text("간격 카운트"),
-                        // Text("종료 카운트"),
+                        SizedBox(
+                          height: 39,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Checkbox(
+                                value: true,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    value = value ?? false;
+                                  });
+                                },
+                              ),
+                              Text("시작 카운트 : 00 초 전 부터 00 초 마다"),
+                              const Spacer(),
+                              IconButton(onPressed: (){}, icon: Icon(Icons.record_voice_over_outlined, size: 20, color: Colors.blueGrey)),
+                              IconButton(onPressed: (){}, icon: Icon(Icons.music_note_outlined, size: 20, color: Colors.blueGrey)),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 39,
+                          child: Row(
+                            children: [
+                              Checkbox(
+                                value: true,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    value = value ?? false;
+                                  });
+                                },
+                              ),
+                              Text("간격 카운트 : 경과/남은 시간 00 초 마다"),
+                              const Spacer(),
+                              IconButton(onPressed: (){}, icon: Icon(Icons.record_voice_over_outlined, size: 20, color: Colors.blueGrey)),
+                              IconButton(onPressed: (){}, icon: Icon(Icons.music_note_outlined, size: 20, color: Colors.blueGrey)),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 39,
+                          child: Row(
+                            children: [
+                              Checkbox(
+                                value: true,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    value = value ?? false;
+                                  });
+                                },
+                              ),
+                              Text("종료 카운트 : 00 초 전 부터 00 초 마다"),
+                              const Spacer(),
+                              IconButton(onPressed: (){}, icon: Icon(Icons.record_voice_over_outlined, size: 20, color: Colors.blueGrey)),
+                              IconButton(onPressed: (){}, icon: Icon(Icons.music_note_outlined, size: 20, color: Colors.blueGrey)),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
                   Container( // 클리퍼 영역과 높이 겹치는 부분
                     decoration: BoxDecoration(
                       // border: Border.symmetric(horizontal:  BorderSide(color: Colors.red.withOpacity(0.5), width: 1.2)),
-                      border: Border.all(width: 1)
+                      // border: Border.all(width: 1)
                     ),
                     width: SizeUtil().sw - (SizeUtil().sh15 * 1.08), // 플로팅버튼 부분과 구분해주기 위함(SizeUtil().sw - SizeUtil().sh15 * 0.6 - SizeUtil().sh15 * 0.48)
                     height: SizeUtil().sh15 * 0.4 * 1.2,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        OutlinedButton.icon(
+                          onPressed: () {},
+                          icon: Icon(
+                            MaterialCommunityIcons.content_save,
+                            size: 25,
+                            color: Colors.grey,
+                          ),
+                          label:   Text("저장",
+                              style: TextStyle(
+                                  fontSize: SizeUtil().sh075 / 4,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blueGrey),
+                              textAlign: TextAlign.center),
+                          style: OutlinedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 2),
+                            // 내부 여백 줄이기
+                            minimumSize: Size(0, 0),
+                            // 최소 크기 제한 해제
+                            tapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
+                          ),
+                        ),
+                        SizedBox(width: 30,),
+                        OutlinedButton.icon(
+                          onPressed: () {},
+                          icon: Icon(
+                            MaterialCommunityIcons.repeat,
+                            size: 25,
+                            color: Colors.grey,
+                          ),
+                          label:   Text('초기화',
+                              style: TextStyle(
+                                  fontSize: SizeUtil().sh075 / 4,
+                                  // fontSize: SizeUtil().sh075 / 3,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blueGrey),
+                              textAlign: TextAlign.center),
+                          style: OutlinedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 2),
+                            // 내부 여백 줄이기
+                            minimumSize: Size(0, 0),
+                            // 최소 크기 제한 해제
+                            tapTargetSize:
+                            MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
+                          ),
+                        ),
                       ],
                     ),
                   )

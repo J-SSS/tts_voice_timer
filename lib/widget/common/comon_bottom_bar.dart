@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
 import '../../../utils/app_utils.dart';
 import '../../../utils/size_util.dart';
+import '../../screen/on_timer_screen.dart';
 
 
-class ComonBottomBar extends StatefulWidget {
-  const ComonBottomBar({super.key});
+class CommonBottomBar extends StatefulWidget {
+  const CommonBottomBar({super.key});
 
   @override
-  State<ComonBottomBar> createState() => _MainBottomBarState();
+  State<CommonBottomBar> createState() => _MainBottomBarState();
 }
 
-class _MainBottomBarState extends State<ComonBottomBar> {
+class _MainBottomBarState extends State<CommonBottomBar> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -156,10 +157,10 @@ class _MainBottomBarState extends State<ComonBottomBar> {
           right: SizeUtil().sh15 * 0.2,
           child: RawMaterialButton(
               onPressed: () async {
-                // Navigator.push(
-                //   context,
-                //   // MaterialPageRoute(builder: (context) => OnTimerScreen()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => OnTimerScreen()),
+                );
               },
             fillColor: Colors.blueGrey.withOpacity(0.5),
             constraints: BoxConstraints.tightFor(width: SizeUtil().sh15 * 0.8, height: SizeUtil().sh15 * 0.8), // 원하는 크기 지정

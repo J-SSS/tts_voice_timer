@@ -169,14 +169,14 @@ class MyAppMain extends StatelessWidget {
                 child: const TimerTimeConsole()
               ),
               Container( // 임시
-                height: SizeUtil().sh075,
+                height: SizeUtil().sh10,
                 width: SizeUtil().sw,
                 alignment: Alignment.center,
                 child: const CommonTitleBar(),)
               ,
               Container( // 임시
                 // height: SizeUtil().sh35,
-                height: SizeUtil().sh25,
+                height: SizeUtil().sh225,
                 // color: Colors.green.withOpacity(0.15),
                 alignment: Alignment.center,
                 child: const TimerAlarmConsole(),
@@ -185,7 +185,7 @@ class MyAppMain extends StatelessWidget {
                 height: SizeUtil().sh10,
                 // color: Colors.red.withOpacity(0.15),
                 alignment: Alignment.center,
-                child: const ComonBottomBar(),
+                child: const CommonBottomBar(),
               ),
               Container( // 임시
                 height: SizeUtil().sh10,
