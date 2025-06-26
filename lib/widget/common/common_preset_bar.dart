@@ -40,7 +40,7 @@ class _MainToolbarState extends State<CommonPresetBar> {
             children: [
               OutlinedButton.icon(
                 onPressed: () {},
-                icon: Icon(MaterialCommunityIcons.circle,size: 20,color: Colors.deepOrangeAccent,),//format_paint,
+                icon: Icon(MaterialCommunityIcons.circle,size: 15,color: Colors.deepOrangeAccent,),//format_paint,
                 label: Text('00:05:00'),
                 // style: OutlinedButton.styleFrom(
                 //   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8), // 내부 여백 줄이기
@@ -51,7 +51,7 @@ class _MainToolbarState extends State<CommonPresetBar> {
               SizedBox(width: 5,),
               OutlinedButton.icon(
                 onPressed: () {},
-                icon: Icon(MaterialCommunityIcons.circle,size: 20,color: Colors.blue,),//format_paint,
+                icon: Icon(MaterialCommunityIcons.circle,size: 15,color: Colors.blue,),//format_paint,
                 label: Text('00:10:00'),
                 // style: OutlinedButton.styleFrom(
                 //   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8), // 내부 여백 줄이기
@@ -62,7 +62,7 @@ class _MainToolbarState extends State<CommonPresetBar> {
               SizedBox(width: 5,),
               OutlinedButton.icon(
                 onPressed: () {},
-                icon: Icon(MaterialCommunityIcons.circle,size: 20,color: Colors.green,),//format_paint,
+                icon: Icon(MaterialCommunityIcons.circle,size: 15,color: Colors.green,),//format_paint,
                 label: Text('00:15:00'),
                 // style: OutlinedButton.styleFrom(
                 //   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8), // 내부 여백 줄이기

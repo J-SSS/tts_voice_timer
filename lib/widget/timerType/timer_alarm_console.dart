@@ -54,7 +54,7 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                       // crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height: 39,
+                          height: 35,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -74,7 +74,7 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                           ),
                         ),
                         SizedBox(
-                          height: 39,
+                          height: 35,
                           child: Row(
                             children: [
                               Checkbox(
@@ -93,7 +93,7 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                           ),
                         ),
                         SizedBox(
-                          height: 39,
+                          height: 35,
                           child: Row(
                             children: [
                               Checkbox(
