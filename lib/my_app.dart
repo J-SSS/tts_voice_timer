@@ -7,7 +7,7 @@ import 'package:tts_voice_timer/utils/size_util.dart';
 import 'package:tts_voice_timer/widget/common/comon_bottom_bar.dart';
 import 'package:tts_voice_timer/widget/timerType/timer_alarm_console.dart';
 import 'package:tts_voice_timer/widget/timerType/timer_time_console.dart';
-import 'package:tts_voice_timer/widget/common/common_title_bar.dart';
+import 'package:tts_voice_timer/widget/common/common_preset_bar.dart';
 import 'package:tts_voice_timer/widget/common/common_app_bar.dart';
 
 import 'etc/adMobService.dart';
@@ -172,7 +172,7 @@ class MyAppMain extends StatelessWidget {
                 height: SizeUtil().sh10,
                 width: SizeUtil().sw,
                 alignment: Alignment.center,
-                child: const CommonTitleBar(),)
+                child: const CommonPresetBar(),)
               ,
               Container( // 임시
                 // height: SizeUtil().sh35,
