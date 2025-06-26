@@ -24,8 +24,8 @@ class _MainBottomBarState extends State<ComonBottomBar> {
           color: Colors.white,
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(
-                  color: Colors.red, width: 0.5),
+              // border: Border.all(
+              //     color: Colors.red, width: 0.5),
             ),
             width: SizeUtil().sw,
             // height: SizeUtil().sh10,
