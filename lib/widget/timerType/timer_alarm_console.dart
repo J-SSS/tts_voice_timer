@@ -66,7 +66,7 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                                   });
                                 },
                               ),
-                              Text("시작 카운트 : 00 초 전 부터 00 초 마다"),
+                              Text("시작 00 초 전 부터 00 초 간격"),
                               const Spacer(),
                               IconButton(onPressed: (){}, icon: Icon(Icons.record_voice_over_outlined, size: 20, color: Colors.blueGrey)),
                               IconButton(onPressed: (){}, icon: Icon(Icons.music_note_outlined, size: 20, color: Colors.blueGrey)),
@@ -85,7 +85,7 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                                   });
                                 },
                               ),
-                              Text("간격 카운트 : 경과/남은 시간 00 초 마다"),
+                              Text("경과/남은 시간 00 초 간격"),
                               const Spacer(),
                               IconButton(onPressed: (){}, icon: Icon(Icons.record_voice_over_outlined, size: 20, color: Colors.blueGrey)),
                               IconButton(onPressed: (){}, icon: Icon(Icons.music_note_outlined, size: 20, color: Colors.blueGrey)),
@@ -104,7 +104,7 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                                   });
                                 },
                               ),
-                              Text("종료 카운트 : 00 초 전 부터 00 초 마다"),
+                              Text("종료 00 초 전 부터 00 초 간격"),
                               const Spacer(),
                               IconButton(onPressed: (){}, icon: Icon(Icons.record_voice_over_outlined, size: 20, color: Colors.blueGrey)),
                               IconButton(onPressed: (){}, icon: Icon(Icons.music_note_outlined, size: 20, color: Colors.blueGrey)),
