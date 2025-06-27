@@ -1,66 +1,42 @@
-import 'dart:convert';
-import 'dart:math';
 
 /// mft_timer 테이블을 맵핑하기 위한 Model
 class TimerModel {
-  /// 타이머 고유아이디
-  final int timerId;
-  /// 폴더 고유아이디
-  final int groupId;
-  /// 타이머 이름
-  final String timerName;
-  /// 타이머 정렬 순서
-  final int sortOrder;
-  /// 설정시간
-  int setupTime = 45;
-  int setupHour = 0;
-  int setupMin = 0;
-  int setupSec = 0;
-  /// 테마 타입
-  String theme;
-  /// 타이머 모드 (0 : 타이머형, 1 : 알람형)
-  final int timerMode;
-  /// 시간 단위 (0 : 초, 1 : 분)
-  final int timeUnit;
-  /// 최대 시간
-  final int maxTime; // OK
-  /// 남은 시간 표시 여부 (0 : 표시안함, 1 : hh:mm:ss, 2 : 00%)
-  final int remainTimeStyle;
-  /// 무음/진동/알람 (0 : 무음, 1 : 진동, 2 : 소리)
-  final int alarmType = 0;
-  /// 타이머 색상 리스트 (최대 5개)
-  final List<int> timerColorList;
+  final int timerId; /// 타이머 고유아이디
+  final int groupId; /// 폴더 고유아이디
+  final String timerName; /// 타이머 이름
 
-  //
-  //
+  int setupHour = 0; /// 설정시간(시)
+  int setupMin = 0; /// 설정시간(분)
+  int setupSec = 0; /// 설정시간(초)
+
+  bool startCountdownYn = false; /// 시작 카운트다운 여부
+  bool intervalCountdownYn = false; /// 간격 카운트다운 여부
+  bool endCountdownYn = false; /// 종료 카운트다운 여부
+
+  int startCountdownValue = 0; /// 시작 카운트다운 시간
+  int intervalCountdownValue = 0; /// 간격 카운트다운 타입(경과시간 : 0 / 남은시간 : 1)
+  int endCountdownValue = 0; /// 종료 카운트다운 시간
+
+  int startCountdownInterval = 0; /// 시작 카운트다운 간격
+  int intervalCountdownInterval = 0; /// 간격 카운트다운 간격
+  int endCountdownInterval = 0; /// 종료 카운트다운 간격
+
+  int startCountdownType = 0; /// 시작 카운트다운 타입(음성 : 0 / 신호 : 1)
+  int intervalCountdownType = 0; /// 간격 카운트다운 타입(음성 : 0 / 신호 : 1)
+  int endCountdownType = 0; /// 종료 카운트다운 타입(음성 : 0 / 신호 : 1)
+
+
   // TimerModel.fromSharedPreferences(Map<String, dynamic> recentTimer){ // SharedPreferences 사용하는 경우
   //   _recentTimer = recentTimer;
   //   // return TimerModel();
   // }
-
-
-  Map<String, dynamic> _recentTimer = {}; // 최근 타이머
-  get recentTimer => _recentTimer;
-
-  // List<int> get timerColorList => _timerColorList;
-  //
-  // set timerColorList(List<int> value) {
-  //   _timerColorList = value;
-  // }
-
 
   /// 객체를 Map으로 변환
   Map<String, dynamic> toMap() {
     return {
       'timerId': timerId,
       'groupId': groupId,
-      'sortOrder': sortOrder,
-      'theme': theme,
-      'timerMode': timerMode,
       'timerName': timerName,
-      'timeUnit': timeUnit,
-      'remainTimeStyle': remainTimeStyle,
-      'timerColorList': timerColorList.toString(),
     };
   }
 
@@ -73,34 +49,18 @@ class TimerModel {
     this.setupMin = 0, // new
     this.setupSec = 0, // new
     this.timerName = "New Timer",
-    this.sortOrder = 0,
-    this.theme = "pizza",
-    this.timerMode = 0,
-    this.timeUnit = 0,
-    this.maxTime = 60,
-    this.remainTimeStyle = 0,
-    this.timerColorList = const [0],
     }
       );
 
   // TimerModel.dflt();
-  // List<int> timerColorList
 
-  // copyWith 메서드
+  /// 객체 복사용 copyWith
   TimerModel copyWith({
     int? timerId,
     int? groupId,
     int? setupHour,
     int? setupMin,
     int? setupSec,
-    // String? timerName,
-    // int? sortOrder,
-    // String? theme,
-    // int? timerMode,
-    // int? timeUnit,
-    // int? maxTime,
-    // int? remainTimeStyle,
-    // List<int>? timerColorList,
   }) {
     return TimerModel(
       timerId : timerId ?? this.timerId,
@@ -108,60 +68,18 @@ class TimerModel {
       setupHour : setupHour ?? this.setupHour,
       setupMin : setupMin ?? this.setupMin,
       setupSec : setupSec ?? this.setupSec,
-      // timerName : timerName ?? this.timerName,
-      // sortOrder : sortOrder ?? this.sortOrder,
-      // theme : theme ?? this.theme,
-      // timerMode : timerMode ?? this.timerMode,
-      // timeUnit : timeUnit ?? this.timeUnit,
-      // maxTime : maxTime ?? this.maxTime,
-      // remainTimeStyle : remainTimeStyle ?? this.remainTimeStyle,
-      // timerColorList : timerColorList ?? this.timerColorList,
     );
   }
 
 
   factory TimerModel.fromMap(Map<String, dynamic> timerData) {
     return TimerModel(
-        timerId : timerData['timerId'],
-        groupId : timerData['groupId'],
-        timerName: timerData['timerName'] ?? 'Basic Timer',
-        sortOrder: timerData['sortOrder']
+      timerId: timerData['timerId'],
+      groupId: timerData['groupId'],
+      timerName: timerData['timerName'] ?? 'Basic Timer',
+
     );
   }
-
-// 'timerId': "", // 타이머 고유아이디
-// 'groupId': "", // 폴더 고유아이디
-// 'timerName': "", // 타이머 이름
-// 'sortOrder': "", // 타이머 정렬 순서
-// 'setupTime': 45, // 설정 시간
-// 'theme': 'pizza', // 테마 타입
-// 'timerMode': 0, // 타이머 타입 (0 : 타이머형, 1 : 알람형)
-// 'maxTime': 60, // 최대 시간
-// 'timeUnit': 0, // 시간 단위 (0 : 초, 1 : 분, 2 : 시간)
-// 'remainTimeStyle': 'false', // 남은 시간 표시 여부 (0 : 표시안함, 1 : hh:mm:ss, 2 : 00%)
-// 'alarmType': 0, // 무음/진동/알람 (0 : 무음, 1 : 진동, 2 : 소리)
-// 'timerColorList': [0], // 타이머 색상 리스트 (최대 5개)
-// 타이머 설명 표시 여부 todo
-
-
-// 'dismissAlarm': '', // 한 번, 버튼 클릭
-// 'isInterNotif': '', // 중간 알림
-// 'notifUnit': '', // 중간 알림
-// 'notifGap': '', // 알림 간격
-// 'notifType': '', // 알림 타입 무음 / 진동 / 소리
-// bool? startFull; // 100%부터 시작 여부
-
-// bool? omitAlarm; // 다음 타이머가 있을 때 알람 생략
-// String? alarmType; // 알림 스타일 (소리 / 진동 / 무음)
-// String? alarmEffect; // 알림시 화면 효과 // todo 필요 없을 수 있음
-// String? alarmExit; // 알림 종료(자동, 정지 할 때 까지)
-
-// String? interAlarmType; // 중간 알림 (설정 안함 / 분 / 초)
-// String? interAlarmEffect; // 중간 알림 스타일 (소리 / 진동 / 무음)
-// String? interAlarm; // 종료임박시 깜빡임 (설정 안함 / 분 / 초) // todo 더 생각해보기
-
-// 마지막 1분 타이머 ★★
-// 종료 후에도 카운트
 }
 
 
