@@ -58,6 +58,20 @@ class TimerController extends ChangeNotifier {
     notifyListeners();
   }
 
+  /** 알람 콘솔 영역 체크박스 수정
+   * s : 시작 알림 / i : 간격 알림 / e : 종료 알림
+   * */
+  modifyCheckbox(String type, bool val){
+    if(type == 's'){
+      _currentTimer = _currentTimer.copyWith(startCountdownYn : val);
+    } else if(type == 'i'){
+      _currentTimer = _currentTimer.copyWith(intervalCountdownYn : val);
+    } else if(type == 'e'){
+      _currentTimer = _currentTimer.copyWith(endCountdownYn : val);
+    }
+    notifyListeners();
+  }
+
   //////////////////////// 타이머 작동 중 ////////////////////////
 
   static const String _timerStartKey = 'timer_start_time';

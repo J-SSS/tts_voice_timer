@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
+import 'package:numberpicker/numberpicker.dart';
 // import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:tts_voice_timer/models/timer_model.dart';
 import '../../../utils/app_utils.dart';
 import '../../../utils/common_values.dart';
 import '../../../utils/size_util.dart';
+import '../../provider/timer_controller.dart';
 
 
 class TimerAlarmConsole extends StatefulWidget {
@@ -19,6 +22,15 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
 
   @override
   Widget build(BuildContext context) {
+    TimerModel timerModel = context.select((TimerController T) => T.currentTimer);
+    bool startCountdownYn = timerModel.startCountdownYn;
+    bool intervalCountdownYn = timerModel.intervalCountdownYn;
+    bool endCountdownYn = timerModel.endCountdownYn;
+
+
+
+
+
     return Stack(
       children: [
         BiteContainer( // 배경 박스
@@ -42,7 +54,7 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                 children: [
                   Container( // 클리퍼 영역과 높이 안겹치는 부분
                     decoration: BoxDecoration(
-                      border: Border.symmetric(horizontal:  BorderSide(color: Colors.blue.withOpacity(0.5), width: 0.5)),
+                      // border: Border.symmetric(horizontal:  BorderSide(color: Colors.blue.withOpacity(0.5), width: 0.5)),
                       // color: Colors.red.withOpacity(0.1),
                     ),
                     // color: Colors.red.withOpacity(0.1),
@@ -53,61 +65,97 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       // crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
+                        Container(
+                          color: !startCountdownYn ? Colors.grey.shade200 : Colors.white,
                           height: 35,
-                          child: Row(
+                          child: !startCountdownYn ?  Row(
+                            children: [
+                              Checkbox(
+                                value: startCountdownYn,
+                                onChanged: (bool? value) {
+                                  context.read<TimerController>().modifyCheckbox('s', !startCountdownYn);
+                                },
+                              ),
+                              Text("시작 카운트다운  :  사용 안함"),
+                            ],) : Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Checkbox(
-                                value: true,
+                                value: startCountdownYn,
                                 onChanged: (bool? value) {
-                                  setState(() {
-                                    value = value ?? false;
-                                  });
+                                  context.read<TimerController>().modifyCheckbox('s', !startCountdownYn);
                                 },
                               ),
-                              Text("시작 00 초 전 부터 00 초 간격"),
+                              Text("시작"),
+                              TextButton(onPressed: (){}, child: Text("10 초",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),)),
+                              Text("전 부터"),
+                              TextButton(onPressed: (){}, child: Text("01 초",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),)),
+                              Text("간격"),
                               const Spacer(),
-                              IconButton(onPressed: (){}, icon: Icon(Icons.record_voice_over_outlined, size: 20, color: Colors.blueGrey)),
-                              IconButton(onPressed: (){}, icon: Icon(Icons.music_note_outlined, size: 20, color: Colors.blueGrey)),
+                              IconButton(onPressed: (){}, icon: Icon(Icons.edit_notifications_outlined, size: 20)),
                             ],
                           ),
                         ),
-                        SizedBox(
+                        Container(
+                          color: !intervalCountdownYn ? Colors.grey.shade100 : Colors.white,
                           height: 35,
-                          child: Row(
+                          child: !intervalCountdownYn ?  Row(
                             children: [
                               Checkbox(
-                                value: true,
+                                value: intervalCountdownYn,
                                 onChanged: (bool? value) {
-                                  setState(() {
-                                    value = value ?? false;
-                                  });
+                                  context.read<TimerController>().modifyCheckbox('i', !intervalCountdownYn);
                                 },
                               ),
-                              Text("경과/남은 시간 00 초 간격"),
+                              Text("작동 중 알림  :  사용 안함"),
+                            ],) : Row(
+                            children: [
+                              Checkbox(
+                                value: intervalCountdownYn,
+                                onChanged: (bool? value) {
+                                  context.read<TimerController>().modifyCheckbox('i', !intervalCountdownYn);
+                                },
+                              ),
+                              TextButton(onPressed: (){}, child: Text("지난 시간",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),),style: OutlinedButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                minimumSize: Size.zero,
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
+                              ),),
+                              // Text("을"),
+                              TextButton(onPressed: (){}, child: Text("01 초",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),)),
+                              Text("간격"),
                               const Spacer(),
-                              IconButton(onPressed: (){}, icon: Icon(Icons.record_voice_over_outlined, size: 20, color: Colors.blueGrey)),
-                              IconButton(onPressed: (){}, icon: Icon(Icons.music_note_outlined, size: 20, color: Colors.blueGrey)),
+                              IconButton(onPressed: (){}, icon: Icon(Icons.edit_notifications_outlined, size: 20)),
                             ],
                           ),
                         ),
-                        SizedBox(
+                        Container(
+                          color: !endCountdownYn ? Colors.grey.shade200 : Colors.white,
                           height: 35,
-                          child: Row(
+                          child: !endCountdownYn ? Row(
                             children: [
                               Checkbox(
-                                value: true,
+                                value: endCountdownYn,
                                 onChanged: (bool? value) {
-                                  setState(() {
-                                    value = value ?? false;
-                                  });
+                                  context.read<TimerController>().modifyCheckbox('e', !endCountdownYn);
                                 },
                               ),
-                              Text("종료 00 초 전 부터 00 초 간격"),
+                              Text("종료 카운트다운  :  사용 안함"),
+                            ],) : Row(
+                            children: [
+                              Checkbox(
+                                value: endCountdownYn,
+                                onChanged: (bool? value) {
+                                  context.read<TimerController>().modifyCheckbox('e', !endCountdownYn);
+                                },
+                              ),
+                              Text("종료"),
+                              TextButton(onPressed: (){}, child: Text("10 초",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),)),
+                              Text("전 부터"),
+                              TextButton(onPressed: (){_showNumberPickerDialog();}, child: Text("01 초",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),)),
+                              Text("간격"),
                               const Spacer(),
-                              IconButton(onPressed: (){}, icon: Icon(Icons.record_voice_over_outlined, size: 20, color: Colors.blueGrey)),
-                              IconButton(onPressed: (){}, icon: Icon(Icons.music_note_outlined, size: 20, color: Colors.blueGrey)),
+                              IconButton(onPressed: (){}, icon: Icon(Icons.edit_notifications_outlined, size: 20)),
                             ],
                           ),
                         ),
@@ -128,11 +176,11 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                         OutlinedButton.icon(
                           onPressed: () {},
                           icon: Icon(
-                            MaterialCommunityIcons.content_save,
+                            MaterialCommunityIcons.content_save_edit_outline,
                             size: 25,
-                            color: Colors.grey,
+                            color: Colors.blueGrey.withOpacity(0.5),
                           ),
-                          label:   Text("저장",
+                          label:   Text("Save",
                               style: TextStyle(
                                   fontSize: SizeUtil().sh075 / 4,
                                   fontWeight: FontWeight.bold,
@@ -145,14 +193,14 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                             minimumSize: Size(0, 0),
                             // 최소 크기 제한 해제
                             tapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
+                            MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
                           ),
                         ),
                         SizedBox(width: 30,),
                         OutlinedButton.icon(
                           onPressed: () {},
                           icon: Icon(
-                            MaterialCommunityIcons.repeat,
+                            MaterialCommunityIcons.rotate_left,
                             size: 25,
                             color: Colors.grey,
                           ),
@@ -183,6 +231,47 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
           ),
         ),
       ],
+    );
+  }
+
+  void _showNumberPickerDialog() {
+    int tempSelected = 1;
+    int _selectedNumber = 1;
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('숫자 선택'),
+          content: NumberPicker(
+            value: tempSelected,
+            minValue: 0,
+            maxValue: 100,
+            onChanged: (value) {
+              setState(() {
+                tempSelected = value;
+              });
+            },
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // 그냥 닫기
+              },
+              child: const Text('취소'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  _selectedNumber = tempSelected;
+                });
+                Navigator.of(context).pop(); // 값 적용하고 닫기
+              },
+              child: const Text('확인'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

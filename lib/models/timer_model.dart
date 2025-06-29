@@ -45,10 +45,13 @@ class TimerModel {
     {
     this.timerId = -1,
     this.groupId = 0,
+    this.timerName = "New Timer",
     this.setupHour = 0, // new
     this.setupMin = 0, // new
     this.setupSec = 0, // new
-    this.timerName = "New Timer",
+    this.startCountdownYn = true, // new
+    this.intervalCountdownYn = true, // new
+    this.endCountdownYn = true, // new
     }
       );
 
@@ -61,6 +64,9 @@ class TimerModel {
     int? setupHour,
     int? setupMin,
     int? setupSec,
+    bool? startCountdownYn,
+    bool? intervalCountdownYn,
+    bool? endCountdownYn,
   }) {
     return TimerModel(
       timerId : timerId ?? this.timerId,
@@ -68,6 +74,9 @@ class TimerModel {
       setupHour : setupHour ?? this.setupHour,
       setupMin : setupMin ?? this.setupMin,
       setupSec : setupSec ?? this.setupSec,
+      startCountdownYn : startCountdownYn ?? this.startCountdownYn,
+      intervalCountdownYn : intervalCountdownYn ?? this.intervalCountdownYn,
+      endCountdownYn : endCountdownYn ?? this.endCountdownYn,
     );
   }
 
