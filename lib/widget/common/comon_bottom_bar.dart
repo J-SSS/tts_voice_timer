@@ -64,39 +64,6 @@ class _MainBottomBarState extends State<CommonBottomBar> {
                           ]
                           ,)
                     ),
-                    TextButton( /** 에디터 화면 버튼 */
-                        onPressed: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(builder: (context) => CreateTimerScreen()),
-                          // );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50), // 둥근 모서리
-                            // side: BorderSide(
-                            //   color: Colors.blueGrey, // 테두리 색상
-                            //   width: 1, // 테두리 두께
-                            // ),
-                          ),
-                          padding: EdgeInsets.all(0.0),
-                          fixedSize: Size(65.0, 65.0),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            // Image.asset(
-                            //   'assets/icon/btm_theme.png',
-                            //   width: 30,
-                            //   height: 30,
-                            // ), circle-edit-outline
-                            Icon(MaterialCommunityIcons.circle_edit_outline,size: 30,),
-                            // wrench-clock clock-edit-outline
-                            // Icon(MaterialCommunityIcons.edit,size: 30,),
-                            Text("Edit")
-                          ]
-                          ,)
-                    ),
                     TextButton( /** 루프 설정 버튼 */
                         onPressed: () {
                           // context.read<TimerController>().setLoopBtn = 'set';

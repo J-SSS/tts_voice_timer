@@ -11,6 +11,7 @@ import 'package:tts_voice_timer/widget/common/common_preset_bar.dart';
 import 'package:tts_voice_timer/widget/common/common_app_bar.dart';
 
 import 'etc/adMobService.dart';
+import 'etc/bottom_banner.dart';
 // import 'dart:developer';
 //
 // import 'package:my_time_timer/provider/timer_controller.dart';
@@ -121,6 +122,18 @@ class MyAppMain extends StatelessWidget {
     TimerModel timerModel = TimerModel();
     context.read<TimerController>().setCurrentTimer = timerModel; //
 
+    // // 비동기로 AdSize를 계산해서 반환
+    // Future<AnchoredAdaptiveBannerAdSize?> _fetchAdSize() async {
+    //   final window = WidgetsBinding.instance.window;
+    //   final logicalSize = window.physicalSize / window.devicePixelRatio;
+    //   final width = logicalSize.width.truncate();
+    //   final orientation = logicalSize.width > logicalSize.height
+    //       ? Orientation.landscape
+    //       : Orientation.portrait;
+    //
+    //   return AdSize.getAnchoredAdaptiveBannerAdSize(orientation, width);
+    // }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       // backgroundColor: scaffoldBackgroundColorLight,
@@ -187,7 +200,8 @@ class MyAppMain extends StatelessWidget {
                 height: SizeUtil().sh10,
                 color: Colors.white,
                 // alignment: Alignment.center,
-                child: AdWidget(ad: _bannerAd,)
+                // child: AdWidget(ad: _bannerAd,)
+                child: BottomBanner()
               ),
             ],
           ),

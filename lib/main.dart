@@ -34,6 +34,25 @@ Future<void> main() async {
     ),
   );
 
+  // 2️⃣ 윈도우에서 논리(dp) 크기 계산
+  // final window = WidgetsBinding.instance.window;
+  // final logicalSize = window.physicalSize / window.devicePixelRatio;
+  // final widthDp  = logicalSize.width.truncate();
+  // final heightDp = logicalSize.height.truncate();
+  // final orientation = widthDp > heightDp
+  //     ? Orientation.landscape
+  //     : Orientation.portrait;
+  //
+  // // 3️⃣ await로 Adaptive Banner 사이즈 가져오기
+  // final adSize = await AdSize.getAnchoredAdaptiveBannerAdSize(
+  //   orientation,
+  //   widthDp,
+  // );
+  //
+  // print('광고사이즈');
+  // print(adSize?.width);
+  // print(adSize?.height);
+
   // todo SQLite 초기화 코드 추가
 
   // SystemChrome은 Flutter에서 디바이스의 시스템 UI(상태바, 내비게이션 바 등)를 제어하기 위해 제공되는 클래스
