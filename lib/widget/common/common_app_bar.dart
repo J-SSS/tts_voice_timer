@@ -81,31 +81,6 @@ class _MainToolbarState extends State<CommonAppBar> {
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
                 ),
               ),
-
-              // ElevatedButton.icon(
-              //   onPressed: () {},
-              //   icon: Icon(Icons.thumb_up),
-              //   label: Text('타이머'),
-              // ),
-              // SizedBox(height: 16),
-              // OutlinedButton.icon(
-              //   onPressed: () {},
-              //   icon: Icon(Icons.send),
-              //   label: Text('스톱워치'),
-              // ),
-              // SizedBox(height: 16),
-              // TextButton.icon(
-              //   onPressed: () {},
-              //   icon: Icon(Icons.info),
-              //   label: Text('인터벌'),
-              // ),
-
-              // Text("(타이머) / (스톱워치) / (인터벌)",
-              //     style: TextStyle(
-              //         fontSize: SizeUtil().sh10 / 4,
-              //         fontWeight: FontWeight.bold,
-              //         color: Colors.blueGrey),
-              //     textAlign: TextAlign.center),
             ],
           )
       );

@@ -9,6 +9,7 @@ import '../../../utils/app_utils.dart';
 import '../../../utils/common_values.dart';
 import '../../../utils/size_util.dart';
 import '../../provider/timer_controller.dart';
+import '../../screen/start_countdown_setting_screen.dart';
 
 
 class TimerAlarmConsole extends StatefulWidget {
@@ -86,13 +87,26 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                                   context.read<TimerController>().modifyCheckbox('s', !startCountdownYn);
                                 },
                               ),
-                              Text("시작"),
-                              TextButton(onPressed: (){}, child: Text("10 초",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),)),
-                              Text("전 부터"),
-                              TextButton(onPressed: (){}, child: Text("01 초",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),)),
-                              Text("간격"),
+                              Text("시작 카운트다운    "),
+                              TextButton(onPressed: (){}, child: Text("10",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),), style: OutlinedButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                minimumSize: Size.zero,
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
+                              ),),
+                              Text(" 초 전 부터 "),
+                              TextButton(onPressed: (){}, child: Text("01",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),),style: OutlinedButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                minimumSize: Size.zero,
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
+                              )),
+                              Text(" 초 간격"),
                               const Spacer(),
-                              IconButton(onPressed: (){}, icon: Icon(Icons.edit_notifications_outlined, size: 20)),
+                              IconButton(onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => StartCountdownSettingScreen()), // 시작 카운트 설정 화면
+                                );
+                              }, icon: Icon(Icons.edit_notifications_outlined, size: 20)),
                             ],
                           ),
                         ),
@@ -116,14 +130,19 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                                   context.read<TimerController>().modifyCheckbox('i', !intervalCountdownYn);
                                 },
                               ),
-                              TextButton(onPressed: (){}, child: Text("지난 시간",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),),style: OutlinedButton.styleFrom(
+                              Text("작동 중 알림  :  "),
+                              TextButton(onPressed: (){}, child: Text("지난 시간 ",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),),style: OutlinedButton.styleFrom(
                                 padding: EdgeInsets.zero,
                                 minimumSize: Size.zero,
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
                               ),),
                               // Text("을"),
-                              TextButton(onPressed: (){}, child: Text("01 초",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),)),
-                              Text("간격"),
+                              TextButton(onPressed: (){}, child: Text("01",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),),style: OutlinedButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                minimumSize: Size.zero,
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
+                              ),),
+                              Text(" 초 간격"),
                               const Spacer(),
                               IconButton(onPressed: (){}, icon: Icon(Icons.edit_notifications_outlined, size: 20)),
                             ],
@@ -149,11 +168,19 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                                   context.read<TimerController>().modifyCheckbox('e', !endCountdownYn);
                                 },
                               ),
-                              Text("종료"),
-                              TextButton(onPressed: (){}, child: Text("10 초",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),)),
-                              Text("전 부터"),
-                              TextButton(onPressed: (){_showNumberPickerDialog();}, child: Text("01 초",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),)),
-                              Text("간격"),
+                              Text("종료 카운트다운  :  "),
+                              TextButton(onPressed: (){}, child: Text("10",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),),style: OutlinedButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                minimumSize: Size.zero,
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
+                              ),),
+                              Text(" 초 전 부터 "),
+                              TextButton(onPressed: (){_showNumberPickerDialog();}, child: Text("01",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),),style: OutlinedButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                minimumSize: Size.zero,
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
+                              ),),
+                              Text(" 초 간격"),
                               const Spacer(),
                               IconButton(onPressed: (){}, icon: Icon(Icons.edit_notifications_outlined, size: 20)),
                             ],
