@@ -88,18 +88,11 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                                 },
                               ),
                               Text("시작 카운트다운    "),
-                              TextButton(onPressed: (){}, child: Text("10",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),), style: OutlinedButton.styleFrom(
+                              TextButton(onPressed: (){ context.read<TimerController>().modifyCountdownTime("s");}, child: Text("10 초 전",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),), style: OutlinedButton.styleFrom(
                                 padding: EdgeInsets.zero,
                                 minimumSize: Size.zero,
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
                               ),),
-                              Text(" 초 전 부터 "),
-                              TextButton(onPressed: (){}, child: Text("01",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),),style: OutlinedButton.styleFrom(
-                                padding: EdgeInsets.zero,
-                                minimumSize: Size.zero,
-                                tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
-                              )),
-                              Text(" 초 간격"),
                               const Spacer(),
                               IconButton(onPressed: (){
                                 Navigator.push(
@@ -169,20 +162,18 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                                 },
                               ),
                               Text("종료 카운트다운  :  "),
-                              TextButton(onPressed: (){}, child: Text("10",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),),style: OutlinedButton.styleFrom(
+                              TextButton(onPressed: (){context.read<TimerController>().modifyCountdownTime("e");}, child: Text("10 초 전",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),),style: OutlinedButton.styleFrom(
                                 padding: EdgeInsets.zero,
                                 minimumSize: Size.zero,
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
                               ),),
-                              Text(" 초 전 부터 "),
-                              TextButton(onPressed: (){_showNumberPickerDialog();}, child: Text("01",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),),style: OutlinedButton.styleFrom(
-                                padding: EdgeInsets.zero,
-                                minimumSize: Size.zero,
-                                tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
-                              ),),
-                              Text(" 초 간격"),
+                              // TextButton(onPressed: (){_showNumberPickerDialog();}, child: Text("01",style: TextStyle(decoration: TextDecoration.underline,decorationThickness: 0.5, ),),style: OutlinedButton.styleFrom(
+                              //   padding: EdgeInsets.zero,
+                              //   minimumSize: Size.zero,
+                              //   tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
+                              // ),),
                               const Spacer(),
-                              IconButton(onPressed: (){}, icon: Icon(Icons.edit_notifications_outlined, size: 20)),
+                              IconButton(onPressed: (){_showNumberPickerDialog2();}, icon: Icon(Icons.edit_notifications_outlined, size: 20)),
                             ],
                           ),
                         ),
@@ -258,6 +249,47 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
           ),
         ),
       ],
+    );
+  }
+
+  void _showNumberPickerDialog2() {
+    int tempSelected = 1;
+    int _selectedNumber = 1;
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('종료 카운트다운'),
+          content: NumberPicker(
+            value: tempSelected,
+            minValue: 0,
+            maxValue: 100,
+            onChanged: (value) {
+              setState(() {
+                tempSelected = value;
+              });
+            },
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // 그냥 닫기
+              },
+              child: const Text('취소'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  _selectedNumber = tempSelected;
+                });
+                Navigator.of(context).pop(); // 값 적용하고 닫기
+              },
+              child: const Text('확인'),
+            ),
+          ],
+        );
+      },
     );
   }
 

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:ffi';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -70,6 +71,19 @@ class TimerController extends ChangeNotifier {
       _currentTimer = _currentTimer.copyWith(endCountdownYn : val);
     }
     notifyListeners();
+  }
+
+  /** 카운트다운 시간 수정
+   * s : 시작 알림 / e : 종료 알림
+   * */
+  modifyCountdownTime(String type){
+    if(type == 's'){
+      print('시작 카운트다운 클릭');
+      // _currentTimer = _currentTimer.copyWith(startCountdownYn : val);
+    } else if(type == 'e'){
+      print('종료 카운트다운 클릭');
+      // _currentTimer = _currentTimer.copyWith(endCountdownYn : val);
+    }
   }
 
   //////////////////////// 타이머 작동 중 ////////////////////////
