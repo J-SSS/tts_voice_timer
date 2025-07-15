@@ -10,6 +10,7 @@ import '../../../utils/common_values.dart';
 import '../../../utils/size_util.dart';
 import '../../provider/timer_controller.dart';
 import '../../screen/start_countdown_setting_screen.dart';
+import '../end_countdown_dialog.dart';
 
 
 class TimerAlarmConsole extends StatefulWidget {
@@ -173,7 +174,14 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                               //   tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역도 축소
                               // ),),
                               const Spacer(),
-                              IconButton(onPressed: (){_showNumberPickerDialog2();}, icon: Icon(Icons.edit_notifications_outlined, size: 20)),
+                              IconButton(onPressed: (){
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => EndCountdownDialog(),
+                                );
+                                          // ExpandableDialog();
+                                // _showNumberPickerDialog2();
+                                }, icon: Icon(Icons.edit_notifications_outlined, size: 20)),
                             ],
                           ),
                         ),
