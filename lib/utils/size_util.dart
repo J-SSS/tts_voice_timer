@@ -45,6 +45,7 @@ class SizeUtil {
   // 자주 쓰는 값
   late double sh01;
   late double sh05;
+  late double sh06;
   late double sh075;
   late double sh10;
   late double sh15;
@@ -107,6 +108,7 @@ class SizeUtil {
 
     sh01 = sh * 0.01;
     sh05 = sh * 0.05;
+    sh06 = sh * 0.06;
     sh075 = sh * 0.075;
     sh10 = sh * 0.1;
     sh15 = sh * 0.15;

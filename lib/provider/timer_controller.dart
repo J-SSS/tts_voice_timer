@@ -86,6 +86,22 @@ class TimerController extends ChangeNotifier {
     }
   }
 
+  /** 카운트다운 상세 설정
+   * s : 시작 알림 / e : 종료 알림
+   * */
+  modifyCountdownDetailSetup(String type, int time, int interval, int alarmType){
+    if(type == 's'){
+      print('종료 카운트다운 상세설정');
+      // _currentTimer = _currentTimer.copyWith(startCountdownYn : val);
+    } else if(type == 'e'){
+      print('종료 카운트다운 상세설정');
+      _currentTimer = _currentTimer.copyWith(endCountdownValue : time, endCountdownInterval : interval, endCountdownType : alarmType);
+    }
+  }
+
+
+
+
   //////////////////////// 타이머 작동 중 ////////////////////////
 
   static const String _timerStartKey = 'timer_start_time';

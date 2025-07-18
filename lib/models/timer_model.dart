@@ -21,9 +21,9 @@ class TimerModel {
   int intervalCountdownInterval = 0; /// 간격 카운트다운 간격
   int endCountdownInterval = 0; /// 종료 카운트다운 간격
 
-  int startCountdownType = 0; /// 시작 카운트다운 타입(음성 : 0 / 신호 : 1)
-  int intervalCountdownType = 0; /// 간격 카운트다운 타입(음성 : 0 / 신호 : 1)
-  int endCountdownType = 0; /// 종료 카운트다운 타입(음성 : 0 / 신호 : 1)
+  int startCountdownType = 0; /// 시작 카운트다운 타입 (음성 : 0 / 신호 : 1 / 진동 : 2)
+  int intervalCountdownType = 0; /// 간격 카운트다운 타입 (음성 : 0 / 신호 : 1 / 진동 : 2)
+  int endCountdownType = 0; /// 종료 카운트다운 타입 (음성 : 0 / 신호 : 1 / 진동 : 2)
 
 
   // TimerModel.fromSharedPreferences(Map<String, dynamic> recentTimer){ // SharedPreferences 사용하는 경우
@@ -51,7 +51,16 @@ class TimerModel {
     this.setupSec = 0, // new
     this.startCountdownYn = true, // new
     this.intervalCountdownYn = true, // new
-    this.endCountdownYn = true, // new
+    this.endCountdownYn = true,
+    this.startCountdownValue = 0,
+    this.intervalCountdownValue = 0,
+    this.endCountdownValue = 0,
+    this.startCountdownInterval = 0,
+    this.intervalCountdownInterval = 0,
+    this.endCountdownInterval = 0,
+    this.startCountdownType = 0,
+    this.intervalCountdownType = 0,
+    this.endCountdownType = 0,
     }
       );
 
@@ -67,6 +76,15 @@ class TimerModel {
     bool? startCountdownYn,
     bool? intervalCountdownYn,
     bool? endCountdownYn,
+    int? startCountdownValue,
+    int? intervalCountdownValue,
+    int? endCountdownValue,
+    int? startCountdownInterval,
+    int? intervalCountdownInterval,
+    int? endCountdownInterval,
+    int? startCountdownType,
+    int? intervalCountdownType,
+    int? endCountdownType,
   }) {
     return TimerModel(
       timerId : timerId ?? this.timerId,
@@ -77,6 +95,15 @@ class TimerModel {
       startCountdownYn : startCountdownYn ?? this.startCountdownYn,
       intervalCountdownYn : intervalCountdownYn ?? this.intervalCountdownYn,
       endCountdownYn : endCountdownYn ?? this.endCountdownYn,
+      startCountdownValue : startCountdownValue ?? this.startCountdownValue,
+      intervalCountdownValue : intervalCountdownValue ?? this.intervalCountdownValue,
+      endCountdownValue : endCountdownValue ?? this.endCountdownValue,
+      startCountdownInterval : startCountdownInterval ?? this.startCountdownInterval,
+      intervalCountdownInterval : intervalCountdownInterval ?? this.intervalCountdownInterval,
+      endCountdownInterval : endCountdownInterval ?? this.endCountdownInterval,
+      startCountdownType : startCountdownType ?? this.startCountdownType,
+      intervalCountdownType : intervalCountdownType ?? this.intervalCountdownType,
+      endCountdownType : endCountdownType ?? this.endCountdownType,
     );
   }
 
