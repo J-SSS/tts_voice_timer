@@ -9,21 +9,16 @@ class EndCountdownDialog extends StatefulWidget {
   _EndCountdownDialogState createState() => _EndCountdownDialogState();
 }
 
-class _EndCountdownDialogState extends State<EndCountdownDialog>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _heightAnimation;
-  bool _isExpanded = false;
+class _EndCountdownDialogState extends State<EndCountdownDialog> {
 
   int? _selectedStartTime = 10;
   int? _selectedIntervalTime = 1;
-  // String? _selectedVoiceAlarmOption = "초123";
+
   String? _selectedVoiceAlarmOption;
 
   // 시간 선택 옵션들 (초 단위)
   final List<int> _startTimeOptions = [3, 5, 10, 15, 20, 30, 45, 60];
   final List<int> _intervalTimeOptions = [1, 2, 3, 5, 10];
-  // final List<String> _voiceAlarmOptions = ["10 초", "10 초 전", "10 초 남았습니다", "직접 입력"];
   final List<String> _voiceAlarmOptions = ["초", "초 전", "초 남았습니다", "직접 입력"];
 
   String _alarmType = 'v'; // v(voice) : 음성, s(sound) : 소리, n(none) : 진동
@@ -31,36 +26,13 @@ class _EndCountdownDialogState extends State<EndCountdownDialog>
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
-      duration: Duration(milliseconds: 300),
-      vsync: this,
-    );
-
-    _heightAnimation = Tween<double>(
-      begin: SizeUtil().sh30, // 초기 높이
-      end: SizeUtil().sh50 * 1.5,   // 확장된 높이
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    ));
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
     super.dispose();
   }
 
-  void _toggleExpansion() {
-    setState(() {
-      _isExpanded = !_isExpanded;
-      if (_isExpanded) {
-        _animationController.forward();
-      } else {
-        _animationController.reverse();
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,12 +44,9 @@ class _EndCountdownDialogState extends State<EndCountdownDialog>
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0),
       ),
-      child: AnimatedBuilder(
-        animation: _heightAnimation,
-        builder: (context, child) {
-          return Container( // dialog 실제 영역
+      child: Container( // dialog 실제 영역
             width: SizeUtil().sw80,
-            height: _heightAnimation.value,
+            height: SizeUtil().sh30,
             padding: EdgeInsets.zero,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -360,20 +329,15 @@ class _EndCountdownDialogState extends State<EndCountdownDialog>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-
-                      ElevatedButton(
-                        onPressed: _toggleExpansion,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(_isExpanded ? '스크립트' : '스크립트'),
-                            SizedBox(width: 5),
-                            AnimatedRotation(
-                              turns: _isExpanded ? 0.5 : 0,
-                              duration: Duration(milliseconds: 300),
-                              child: Icon(Icons.expand_more),
-                            ),
-                          ],
+                      TextButton(
+                        onPressed: () {
+                        },
+                        child: Text(
+                          '초기화',
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blueGrey),
                         ),
                       ),
                       TextButton(
@@ -392,61 +356,9 @@ class _EndCountdownDialogState extends State<EndCountdownDialog>
                     ],
                   ),
                 ),
-
-                // 확장 버튼
-
-
-                // 확장되는 콘텐츠
-                if (_isExpanded) ...[
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Expanded Content',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Text('확장',
-                            style: TextStyle(fontSize: 14),
-                          ),
-                          SizedBox(height: 15),
-
-                          // 추가 위젯들 예시
-                          TextField(
-                            decoration: InputDecoration(
-                              labelText: 'Enter something',
-                              border: OutlineInputBorder(),
-                            ),
-                          ),
-                          SizedBox(height: 15),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              ElevatedButton(
-                                onPressed: () {},
-                                child: Text('Action 1'),
-                              ),
-                              ElevatedButton(
-                                onPressed: () {},
-                                child: Text('Action 2'),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
               ],
             ),
-          );
-        },
+
       ),
     );
   }

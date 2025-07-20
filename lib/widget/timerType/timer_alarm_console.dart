@@ -179,8 +179,6 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                                   context: context,
                                   builder: (context) => EndCountdownDialog(),
                                 );
-                                          // ExpandableDialog();
-                                // _showNumberPickerDialog2();
                                 }, icon: Icon(Icons.edit_notifications_outlined, size: 20)),
                             ],
                           ),
