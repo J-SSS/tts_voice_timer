@@ -36,6 +36,8 @@ dependencies:
   flutter_icons_null_safety: ^1.1.0 # Flutter 아이콘 라이브러리 (null safety 지원)
   shared_preferences: ^2.2.2 # 로컬 저장소에 데이터를 저장하기 위한 라이브러리
   numberpicker: ^2.1.2 # Numberpicker
+  path: ^1.8.3 # 파일 및 디렉토리 경로 처리
+  sqflite: ^2.0.0 # SQLite 데이터베이스 라이브러리
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

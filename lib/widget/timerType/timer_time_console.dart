@@ -5,6 +5,7 @@ import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
 import 'package:provider/provider.dart';
 import 'package:tts_voice_timer/models/timer_model.dart';
 import '../../../utils/size_util.dart';
+import '../../models/preset_model.dart';
 import '../../provider/timer_controller.dart';
 
 class TimerTimeConsole extends StatefulWidget {
@@ -19,10 +20,22 @@ class _MainToolbarState extends State<TimerTimeConsole> {
 
   @override
   Widget build(BuildContext context) {
-    TimerModel timerModel = context.select((TimerController T) => T.currentTimer);
-    String frmtHour = timerModel.setupHour.toString().padLeft(2, '0');
-    String frmtMin = timerModel.setupMin.toString().padLeft(2, '0');
-    String frmtSec = timerModel.setupSec.toString().padLeft(2, '0');
+    // TimerModel timerModel = context.select((TimerController T) => T.currentTimer);
+    // String frmtHour = timerModel.setupHour.toString().padLeft(2, '0');
+    // String frmtMin = timerModel.setupMin.toString().padLeft(2, '0');
+    // String frmtSec = timerModel.setupSec.toString().padLeft(2, '0');
+
+    PresetModel? presetModel = context.read<TimerController>().currentPreset;
+    TimerModel? timerModel = presetModel?.timerModel;
+    print('값확인');
+    print(timerModel?.setupHour);
+    print(timerModel?.setupMin);
+    print(timerModel?.setupSec);
+
+    String? frmtHour = timerModel?.setupHour.toString().padLeft(2, '0');
+    String? frmtMin = timerModel?.setupMin.toString().padLeft(2, '0');
+    String? frmtSec = timerModel?.setupSec.toString().padLeft(2, '0');
+
 
     return Container(
         width: SizeUtil().sw,
@@ -150,7 +163,7 @@ class _MainToolbarState extends State<TimerTimeConsole> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 // Text(context.watch<TimerController>().currentTimer.setupTime.toString(),
-                Text(frmtHour,
+                Text(frmtHour!,
                     style: TextStyle(
                         fontSize: SizeUtil().sh10 * 0.90,
                         fontWeight: FontWeight.bold,
@@ -162,7 +175,7 @@ class _MainToolbarState extends State<TimerTimeConsole> {
                         fontWeight: FontWeight.bold,
                         color: Colors.blueGrey),
                     textAlign: TextAlign.center),
-                Text(frmtMin,
+                Text(frmtMin!,
                     style: TextStyle(
                         fontSize: SizeUtil().sh10 * 0.9,
                         fontWeight: FontWeight.bold,
@@ -174,7 +187,7 @@ class _MainToolbarState extends State<TimerTimeConsole> {
                         fontWeight: FontWeight.bold,
                         color: Colors.blueGrey),
                     textAlign: TextAlign.center),
-                Text(frmtSec,
+                Text(frmtSec!,
                     style: TextStyle(
                         fontSize: SizeUtil().sh10 * 0.9,
                         fontWeight: FontWeight.bold,

@@ -9,6 +9,8 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 // import 'package:my_time_timer/manager/prefs_manager.dart';
 import 'package:tts_voice_timer/my_app.dart';
 
+import 'manager/db_manager.dart';
+
 Future<void> main() async {
   // CustomBinding 사용법 찾아보기
   CustomWidgetsBinding();
@@ -20,9 +22,8 @@ Future<void> main() async {
 
   // SharedPreferences 초기화
   // await PrefsManager.instance.init();
-  //
-  //
-  // await DbManager.instance.init();
+
+  await DbManager.instance.init(); // SQLite 초기화
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(

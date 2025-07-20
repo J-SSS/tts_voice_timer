@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
+import 'package:tts_voice_timer/widget/list_dialog.dart';
 import '../../../utils/app_utils.dart';
 import '../../../utils/size_util.dart';
 import '../../screen/on_timer_screen.dart';
+import '../../screen/setting_screen.dart';
 
 
 class CommonBottomBar extends StatefulWidget {
@@ -46,10 +48,10 @@ class _MainBottomBarState extends State<CommonBottomBar> {
                   children: [
                     TextButton( /** 리스트 버튼 */
                         onPressed: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(builder: (context) => PresetScreen()), // 프리셋 화면
-                          // );
+                          showDialog(
+                            context: context,
+                            builder: (context) => ListDialog(),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           shape: const CircleBorder(),
@@ -90,10 +92,10 @@ class _MainBottomBarState extends State<CommonBottomBar> {
                     ),
                     TextButton( /** 셋팅 화면 버튼 */
                         onPressed: () {
-                          // Navigator.push(
-                          //   context,
-                          //   // MaterialPageRoute(builder: (context) => SettingScreen()), // 설정 화면
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SettingScreen()), // 설정 화면
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           shape: const CircleBorder(),

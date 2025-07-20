@@ -1,8 +1,8 @@
 
-/// mft_timer 테이블을 맵핑하기 위한 Model
+/// tvt_timer 테이블을 맵핑하기 위한 Model
 class TimerModel {
   final int timerId; /// 타이머 고유아이디
-  final int groupId; /// 폴더 고유아이디
+  final int presetId; /// 폴더 고유아이디
   final String timerName; /// 타이머 이름
 
   int setupHour = 0; /// 설정시간(시)
@@ -31,20 +31,11 @@ class TimerModel {
   //   // return TimerModel();
   // }
 
-  /// 객체를 Map으로 변환
-  Map<String, dynamic> toMap() {
-    return {
-      'timerId': timerId,
-      'groupId': groupId,
-      'timerName': timerName,
-    };
-  }
-
-
+  /// Named Parameter 기본 생성자
   TimerModel(
     {
     this.timerId = -1,
-    this.groupId = 0,
+    this.presetId = 0,
     this.timerName = "New Timer",
     this.setupHour = 0, // new
     this.setupMin = 0, // new
@@ -64,12 +55,10 @@ class TimerModel {
     }
       );
 
-  // TimerModel.dflt();
-
   /// 객체 복사용 copyWith
   TimerModel copyWith({
     int? timerId,
-    int? groupId,
+    int? presetId,
     int? setupHour,
     int? setupMin,
     int? setupSec,
@@ -88,7 +77,7 @@ class TimerModel {
   }) {
     return TimerModel(
       timerId : timerId ?? this.timerId,
-      groupId : groupId ?? this.groupId,
+      presetId : presetId ?? this.presetId,
       setupHour : setupHour ?? this.setupHour,
       setupMin : setupMin ?? this.setupMin,
       setupSec : setupSec ?? this.setupSec,
@@ -107,14 +96,36 @@ class TimerModel {
     );
   }
 
-
+  /// Map을 객체로 변환
   factory TimerModel.fromMap(Map<String, dynamic> timerData) {
-    return TimerModel(
-      timerId: timerData['timerId'],
-      groupId: timerData['groupId'],
-      timerName: timerData['timerName'] ?? 'Basic Timer',
+      return TimerModel(
+        timerId: timerData['timerId'],
+        presetId: timerData['presetId'],
+        setupHour: timerData['setupHour'],
+        setupMin: timerData['setupMin'],
+        setupSec: timerData['setupSec'],
+        startCountdownYn: timerData['startCountdownYn'] == 1 || timerData['startCountdownYn'] == true,
+        intervalCountdownYn: timerData['intervalCountdownYn'] == 1 || timerData['intervalCountdownYn'] == true,
+        endCountdownYn: timerData['endCountdownYn'] == 1 || timerData['endCountdownYn'] == true,
+        startCountdownValue: timerData['startCountdownValue'],
+        intervalCountdownValue: timerData['intervalCountdownValue'],
+        endCountdownValue: timerData['endCountdownValue'],
+        startCountdownInterval: timerData['startCountdownInterval'],
+        intervalCountdownInterval: timerData['intervalCountdownInterval'],
+        endCountdownInterval: timerData['endCountdownInterval'],
+        startCountdownType: timerData['startCountdownType'],
+        intervalCountdownType: timerData['intervalCountdownType'],
+        endCountdownType: timerData['endCountdownType'],
+      );
+    }
 
-    );
+  /// 객체를 Map으로 변환
+  Map<String, dynamic> toMap() {
+    return {
+      'timerId': timerId,
+      'presetId': presetId,
+      'timerName': timerName,
+    };
   }
 }
 

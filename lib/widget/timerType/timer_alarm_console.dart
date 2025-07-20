@@ -9,7 +9,6 @@ import '../../../utils/app_utils.dart';
 import '../../../utils/common_values.dart';
 import '../../../utils/size_util.dart';
 import '../../provider/timer_controller.dart';
-import '../../screen/start_countdown_setting_screen.dart';
 import '../end_countdown_dialog.dart';
 
 
@@ -96,10 +95,10 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                               ),),
                               const Spacer(),
                               IconButton(onPressed: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => StartCountdownSettingScreen()), // 시작 카운트 설정 화면
-                                );
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(builder: (context) => StartCountdownSettingScreen()), // 시작 카운트 설정 화면
+                                // );
                               }, icon: Icon(Icons.edit_notifications_outlined, size: 20)),
                             ],
                           ),

@@ -4,6 +4,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tts_voice_timer/models/preset_model.dart';
+import 'package:tts_voice_timer/repository/timer_repository.dart';
 import 'dart:isolate';
 
 
@@ -19,9 +21,30 @@ class TimerController extends ChangeNotifier {
 
   late TimerModel _currentTimer;
 
+  PresetModel? _presetModel;
+  PresetModel? _currentPreset;
+
   TimerController() {
     // AppManager.log('Isolate Timer Init');
     // isolateTimerInit(); // isolate 생성
+  }
+
+  get presetModel => _presetModel;
+  get currentPreset => _currentPreset;
+
+
+  Future<void> assignPresetModel() async {
+    print('###### PresetModel 초기화 ######');
+    final preset = await TimerRepository().getPresetFromDb();
+    print(preset?.presetName);
+    if (preset != null) {
+      _presetModel = preset;
+      _currentPreset = preset;
+      // notifyListeners();
+    } else {
+      // Handle null case if necessary
+      print('Failed to fetch PresetModel');
+    }
   }
 
   get currentTimer => _currentTimer;
