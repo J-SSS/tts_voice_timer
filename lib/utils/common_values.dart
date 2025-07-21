@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-const colorList = [
+const commonColorList = [
   Colors.red,
   Colors.amber,
   Colors.deepOrangeAccent,
-  Colors.tealAccent,
-  Colors.blue,
-  Colors.greenAccent,
   Colors.purpleAccent,
+  Colors.blueAccent,
+  Colors.blue,
   Colors.lightBlueAccent,
+  Colors.greenAccent,
+  Colors.tealAccent,
   Colors.grey,
-  Colors.indigoAccent,
 ];
 // ..color = Color(0xFF56B5B7) // 진한 민트
 //   ..color = Color.fromRGBO(106, 211, 211, 1.0) // 민트

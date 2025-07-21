@@ -30,8 +30,6 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
 
 
 
-
-
     return Stack(
       children: [
         BiteContainer( // 배경 박스

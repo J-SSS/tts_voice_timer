@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
     watch : context.watch<AppConfigController>().isOnTimerBottomViewYn
     select : TimerModel timerModel = context.select((CreateTimerController T) => T.timerModel);
     */
-
     return MultiProvider(
       providers: [
         // ChangeNotifierProvider(create: (context) => TimerViewModel(), lazy: false,), // shared preference & sqlite // todo 얘는 프로바이더 안써도될거같음
@@ -66,6 +65,24 @@ class MyAppMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('메인도리빌드됨?'); // todo 이거 왜 리빌드 되는지 찾아보기
+// https://github.com/copilot/share/802d5338-0120-8053-8043-040c60af0192
+    /*
+     // MediaQuery 값을 미리 추출하여 의존성 제거
+    final screenSize = MediaQuery.of(context).size;
+    final screenPadding = MediaQuery.of(context).padding;
+
+    return MediaQuery(
+      // 고정된 MediaQuery 데이터 제공
+      data: MediaQueryData(
+        size: screenSize,
+        padding: screenPadding,
+        viewInsets: EdgeInsets.zero, // viewInsets 고정
+        devicePixelRatio: MediaQuery.of(context).devicePixelRatio,
+        textScaleFactor: MediaQuery.of(context).textScaleFactor,
+      ),child: Scaffold(
+    * */
+
     return FutureBuilder(
       future: _initMyApp(context),
       builder: (context, snapshot) {

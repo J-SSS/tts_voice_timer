@@ -79,6 +79,21 @@ class TimerController extends ChangeNotifier {
 
   }
 
+  /** 프리셋을 업데이트함 */
+  modifyPresetTitle(Map<String, dynamic> data) async {
+    print('data : $data');
+    await TimerRepository().updatePreset(data);
+    // PresetModel의 이름을 수정하는 로직
+    // for (var preset in _presetDataList) {
+    //   if (preset.presetId == presetId) {
+    //     _currentPreset = preset.copyWith(presetTitle: presetTitle);
+    //     notifyListeners();
+    //     break;
+    //   }
+    // }
+
+  }
+
 
 
   assignCurrentPreset(PresetModel presetModel) {

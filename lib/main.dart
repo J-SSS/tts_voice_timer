@@ -23,6 +23,7 @@ Future<void> main() async {
   // SharedPreferences 초기화
   // await PrefsManager.instance.init();
 
+  // await DbManager.instance.resetData(); // SQLite 초기화
   await DbManager.instance.init(); // SQLite 초기화
 
   SystemChrome.setSystemUIOverlayStyle(

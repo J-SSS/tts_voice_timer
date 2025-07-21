@@ -6,6 +6,7 @@ import 'package:tts_voice_timer/models/preset_model.dart';
 import 'package:tts_voice_timer/models/timer_model.dart';
 import '../../../utils/size_util.dart';
 import '../../provider/timer_controller.dart';
+import '../../utils/common_values.dart';
 
 
 class CommonPresetBar extends StatefulWidget {
@@ -21,6 +22,8 @@ class _MainToolbarState extends State<CommonPresetBar> {
   Widget build(BuildContext context) {
     List<PresetModel> presetList = context.read<TimerController>().presetDataList;
     int presetListLength = presetList.length;
+
+    print('이게왜리빌드');
 
     return Container(
         width: SizeUtil().sw,
@@ -55,18 +58,11 @@ class _MainToolbarState extends State<CommonPresetBar> {
           String? hour = timerModel?.setupHour.toString().padLeft(2, '0');
               String? min = timerModel?.setupMin.toString().padLeft(2, '0');
               String? sec = timerModel?.setupSec.toString().padLeft(2, '0');
-              String timeText = presetList[index].presetName.isNotEmpty
-                  ? presetList[index].presetName
+              String timeText = presetList[index].presetTitle.isNotEmpty
+                  ? presetList[index].presetTitle
                   : '$hour:$min:$sec';
 
-              // 색상 순환
-              Color dotColor = index % 4 == 0
-                  ? Colors.deepOrangeAccent
-                  : index % 4 == 1
-                      ? Colors.blue
-                      : index % 4 == 2
-                          ? Colors.green
-                          : Colors.purple;
+            Color dotColor = commonColorList[int.parse(presetList[index].presetColor)];
 
               return Container( // todo ListView 부모요소의 사이즈를 바꿔줘야함
                 // height: SizeUtil().sh01,

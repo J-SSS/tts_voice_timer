@@ -45,9 +45,14 @@ class TimerRepository {
     return presetList;
   }
 
-  /// tvt_group에 새 그룹을 생성한다
-  Future<void> insertGroup(Map<String, dynamic> data) async {
+  /// tvt_group에 새 프리셋을 생성한다
+  Future<void> insertPreset(Map<String, dynamic> data) async {
     await dbManager.insertPreset(data);
+  }
+
+  /// tvt_timer의 타이머를 업데이트한다
+  Future<void> updatePreset(Map<String, dynamic> data) async {
+    await dbManager.updatePreset(data);
   }
 
   /// tvt_timer에 새 타이머를 생성한다

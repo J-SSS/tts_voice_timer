@@ -25,7 +25,7 @@ class DbManager {
   /// 데이터베이스 초기화
   Future<Database> init() async {
     AppManager.log("SQLite 초기화", type: "S");
-
+    // resetData();
     final dbPath = await getDatabasesPath(); // /data/user/0/com.mtt.my_time_timer/databases
     final path = join(dbPath, _dbName);
 
@@ -66,7 +66,7 @@ class DbManager {
         presetId INTEGER PRIMARY KEY AUTOINCREMENT,
         presetType INTEGER,
         sortOrder INTEGER,
-        presetName TEXT,
+        presetTitle TEXT,
         presetColor TEXT,
         timerId TEXT
       )
@@ -108,22 +108,21 @@ class DbManager {
       "presetId" : 0,
       "presetType" : 0,
       "sortOrder" : 0,
-      "presetName" : "00:05:00",
-      "presetColor" : "red",
+      "presetTitle" : "00:05:00",
+      "presetColor" : "0",
       "timerId" : "0",
     }); // tvt_preset
     await db.insert(_tablePreset, {
       "presetId" : 1,
       "presetType" : 0,
       "sortOrder" : 1,
-      "presetName" : "00:10:00",
-      "presetColor" : "green",
+      "presetTitle" : "00:10:00",
+      "presetColor" : "4",
       "timerId" : "1",
     }); // tvt_preset
-    await db.insert(_tableTimer, {
+    await db.insert(_tableTimer, { // todo 불리언 삭제된다고함 수정해주기
       "timerId" : 0,
       "presetId" : 0,
-      "timerName" : "00:05:00",
       "setupHour" : 0,
       "setupMin" : 5,
       "setupSec" : 0,
@@ -143,7 +142,6 @@ class DbManager {
     await db.insert(_tableTimer, {
       "timerId" : 1,
       "presetId" : 1,
-      "timerName" : "00:10:00",
       "setupHour" : 0,
       "setupMin" : 10,
       "setupSec" : 0,
@@ -167,6 +165,21 @@ class DbManager {
     Database db = await instance.database;
     return await db.insert(_tablePreset, data);
   }
+
+  /// tvt_preset를 수정한다
+  Future<int> updatePreset(Map<String, dynamic> data) async {
+    print('여기');
+    print(data);
+    Database db = await instance.database;
+    try {
+      return await db.update(_tablePreset, data, where: 'presetId = ?', whereArgs: [data['presetId']]);
+    } catch (e) {
+      AppManager.log("DB 업데이트 중 오류 발생: $e", type: "E");
+      return 0; // 실패 시 기본값 반환
+    }
+  }
+
+
 
   /// tvt_timer에 새 타이머를 생성한다 // todo 수정해야함
   Future<int> insertTimer(Map<String, dynamic> data) async {
