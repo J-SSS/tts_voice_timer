@@ -1,6 +1,7 @@
 import '../models/preset_model.dart';
 
 import '../manager/db_manager.dart';
+import '../models/timer_model.dart';
 
 /// TimerRepository
 class TimerRepository {
@@ -17,10 +18,31 @@ class TimerRepository {
   // }
 
   /// tvt_group 및 tvt_timer 테이블의 모든 데이터를 PresetModel로 반환한다
-  Future<PresetModel?> getPresetFromDb() async {
+  Future<PresetModel?> getPresetFromDb() async { // todo 리팩토링 해줘야함 > 불필요
     final presetData =  await dbManager.getPresetData();
     final timerData =  await dbManager.getTimerData();
-    return PresetModel.fromMap(presetData,timerData);
+    return PresetModel.fromMap2(presetData,timerData);
+  }
+
+  /// tvt_group 및 tvt_timer 테이블의 모든 데이터를 List<PresetModel>로 반환한다
+  Future<List<PresetModel>> getPresetDataFromDb() async {
+    final List<Map<String, dynamic>> presetDataList =  await dbManager.getPresetData();
+    final List<Map<String, dynamic>> timerDataList =  await dbManager.getTimerData();
+
+    List<PresetModel> presetList = [];
+    Map<int, TimerModel> timerMap = {}; // key : presetId, value : TimerModel
+    for (var timerData in timerDataList) {
+      timerMap[timerData['presetId']] = TimerModel.fromMap(timerData);
+    }
+    for (var presetData in presetDataList) {
+      PresetModel presetModel = PresetModel.fromMap(presetData);
+      presetModel = presetModel.copyWith(
+        timerModel: timerMap[presetData['presetId']],
+      );
+      presetList.add(presetModel);
+    }
+
+    return presetList;
   }
 
   /// tvt_group에 새 그룹을 생성한다

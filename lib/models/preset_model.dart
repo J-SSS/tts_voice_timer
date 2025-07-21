@@ -50,11 +50,20 @@ class PresetModel {
   }
 
   /// Map을 객체로 변환
-  factory PresetModel.fromMap(List<Map<String, dynamic>> presetDataList, List<Map<String, dynamic>> timerDataList) {
-    print('여기');
-    print(presetDataList[0]);
-    print(timerDataList[0]);
+  factory PresetModel.fromMap(Map<String, dynamic> presetDataList) {
+    return PresetModel(
+      presetId: presetDataList['presetId'],
+      presetType: presetDataList['presetType'],
+      sortOrder: presetDataList['sortOrder'],
+      presetName: presetDataList['presetName'],
+      presetColor: presetDataList['presetColor'],
+      timerId: presetDataList['timerId'],
+      timerModel: null, // DB에서 직접 join 해서 가져올 수 있는지 확인해보기
+    );
+  }
 
+  /// 삭제예정
+  factory PresetModel.fromMap2(List<Map<String, dynamic>> presetDataList, List<Map<String, dynamic>> timerDataList) {
     TimerModel timerModel = TimerModel.fromMap(timerDataList[0]);
 
     PresetModel presetModel = PresetModel(
@@ -67,23 +76,6 @@ class PresetModel {
       timerModel: timerModel,
     );
 
-    print(presetModel.timerModel?.setupHour);
-    print(presetModel.timerModel?.setupMin);
-    // List<GroupModel> groupList = [];
-    //
-    // // todo 불변이라 sort 안돼서 리스트 복사 후 사용해야할듯함
-    // // groupDataList.sort((a, b) => a['sortOrder'].compareTo(b['sortOrder']));
-    //
-    // for (var groupData in groupDataList) {
-    //   GroupModel groupModel = GroupModel.fromMap(groupData);
-    //   int groupId = groupModel.groupId;
-    //
-    //   List<Map<String, dynamic>> filteredList = timerDataList.where((ele) => ele['groupId'] == groupId).toList();
-    //   filteredList.sort((a, b) => a['sortOrder'].compareTo(b['sortOrder']));
-    //   filteredList.forEach((ele){groupModel.timerList.add(TimerModel.fromMap(ele));});
-    //
-    //   groupList.add(groupModel);
-    // }
     return presetModel;
   }
 

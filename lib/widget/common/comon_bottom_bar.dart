@@ -128,7 +128,7 @@ class _MainBottomBarState extends State<CommonBottomBar> {
               onPressed: () async {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => OnTimerScreen(setupHour: 1,setupMin: 1,setupSec: 1,)),
+                  MaterialPageRoute(builder: (context) => OnTimerScreen()),
                 );
               },
             fillColor: Colors.blueGrey.withOpacity(0.5),

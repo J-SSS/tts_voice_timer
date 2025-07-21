@@ -20,22 +20,11 @@ class _MainToolbarState extends State<TimerTimeConsole> {
 
   @override
   Widget build(BuildContext context) {
-    // TimerModel timerModel = context.select((TimerController T) => T.currentTimer);
-    // String frmtHour = timerModel.setupHour.toString().padLeft(2, '0');
-    // String frmtMin = timerModel.setupMin.toString().padLeft(2, '0');
-    // String frmtSec = timerModel.setupSec.toString().padLeft(2, '0');
-
-    PresetModel? presetModel = context.read<TimerController>().currentPreset;
-    TimerModel? timerModel = presetModel?.timerModel;
-    print('값확인');
-    print(timerModel?.setupHour);
-    print(timerModel?.setupMin);
-    print(timerModel?.setupSec);
+    TimerModel timerModel = context.select((TimerController T) => T.currentTimer);
 
     String? frmtHour = timerModel?.setupHour.toString().padLeft(2, '0');
     String? frmtMin = timerModel?.setupMin.toString().padLeft(2, '0');
     String? frmtSec = timerModel?.setupSec.toString().padLeft(2, '0');
-
 
     return Container(
         width: SizeUtil().sw,

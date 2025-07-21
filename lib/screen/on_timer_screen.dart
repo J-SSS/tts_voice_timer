@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tts_voice_timer/models/timer_model.dart';
 import 'package:tts_voice_timer/provider/timer_controller.dart';
 
 class OnTimerScreen extends StatefulWidget {
-  final int setupHour;
-  final int setupMin;
-  final int setupSec;
 
   const OnTimerScreen({
     Key? key,
-    required this.setupHour,
-    required this.setupMin,
-    required this.setupSec,
   }) : super(key: key);
 
   @override
@@ -24,10 +19,10 @@ class _TimerPageState extends State<OnTimerScreen> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
-    // 페이지 로드 시 기존 타이머 복원 또는 새 타이머 시작
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _initializeTimer();
-    });
+    // // 페이지 로드 시 기존 타이머 복원 또는 새 타이머 시작
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   _initializeTimer();
+    // });
   }
 
   @override
@@ -44,7 +39,7 @@ class _TimerPageState extends State<OnTimerScreen> with WidgetsBindingObserver {
     }
   }
 
-  void _initializeTimer() async {
+  void _initializeTimer(TimerModel timerModel) async {
     final timerProvider = context.read<TimerController>();
 
     // 먼저 기존 타이머 복원 시도
@@ -53,15 +48,26 @@ class _TimerPageState extends State<OnTimerScreen> with WidgetsBindingObserver {
     // 복원된 타이머가 없으면 새로 시작
     if (!timerProvider.isRunning) {
       await timerProvider.startTimer(
-        widget.setupHour,
-        widget.setupMin,
-        widget.setupSec,
+        timerModel.setupHour,
+        timerModel.setupMin,
+        timerModel.setupSec,
       );
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    // context.read<TimerController>().currentTimer;
+    TimerModel timerModel = TimerModel();
+    timerModel.setupHour = 0;
+    timerModel.setupMin = 10;
+    timerModel.setupHour = 0;
+
+    // 페이지 로드 시 기존 타이머 복원 또는 새 타이머 시작
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _initializeTimer(timerModel);
+    });
+
     return Scaffold(
       body: Consumer<TimerController>(
         builder: (context, timerProvider, child) {

@@ -19,10 +19,11 @@ class TimerController extends ChangeNotifier {
   String loopType = ''; // N : 반복 안함, O : 하나 반복, L : 목록 반복
   // ~timer 변수
 
-  late TimerModel _currentTimer;
+  late TimerModel? _currentTimer;
 
   PresetModel? _presetModel;
   PresetModel? _currentPreset;
+  List<PresetModel> _presetDataList = [];
 
   TimerController() {
     // AppManager.log('Isolate Timer Init');
@@ -31,18 +32,28 @@ class TimerController extends ChangeNotifier {
 
   get presetModel => _presetModel;
   get currentPreset => _currentPreset;
+  get presetDataList => _presetDataList;
 
 
   Future<void> assignPresetModel() async {
     print('###### PresetModel 초기화 ######');
     final preset = await TimerRepository().getPresetFromDb();
-    print(preset?.presetName);
+
     if (preset != null) {
       _presetModel = preset;
       _currentPreset = preset;
       // notifyListeners();
     } else {
-      // Handle null case if necessary
+      print('Failed to fetch PresetModel');
+    }
+  }
+
+  Future<void> assignPresetDataList() async {
+    print('###### PresetDataList 초기화 ######');
+    final presetDataList = await TimerRepository().getPresetDataFromDb();
+    if (presetDataList.length > 0) {
+      _presetDataList = presetDataList;
+    } else {
       print('Failed to fetch PresetModel');
     }
   }
@@ -68,16 +79,26 @@ class TimerController extends ChangeNotifier {
 
   }
 
+
+
+  assignCurrentPreset(PresetModel presetModel) {
+    _currentPreset = presetModel;
+    if(presetModel.timerModel != null){
+      _currentTimer = presetModel.timerModel;
+    }
+    notifyListeners();
+  }
+
   /** 설정 시간 수정
    * h : 시간 / m : 분 / s : 초
    * */
   modifySetupTime(String type, int val){
     if(type == 'h'){
-      _currentTimer = _currentTimer.copyWith(setupHour: _currentTimer.setupHour + val > 99 ? 0 : _currentTimer.setupHour + val < 0 ? 99 : _currentTimer.setupHour + val);
+      _currentTimer = _currentTimer?.copyWith(setupHour: _currentTimer!.setupHour + val > 99 ? 0 : _currentTimer!.setupHour + val < 0 ? 99 : _currentTimer!.setupHour + val);
     } else if(type == 'm'){
-      _currentTimer = _currentTimer.copyWith(setupMin: _currentTimer.setupMin + val > 59 ? 0 : _currentTimer.setupMin + val < 0 ? 59 : _currentTimer.setupMin + val);
+      _currentTimer = _currentTimer?.copyWith(setupMin: _currentTimer!.setupMin + val > 59 ? 0 : _currentTimer!.setupMin + val < 0 ? 59 : _currentTimer!.setupMin + val);
     } else if(type == 's'){
-      _currentTimer = _currentTimer.copyWith(setupSec: _currentTimer.setupSec + val > 59 ? 0 : _currentTimer.setupSec + val < 0 ? 59 : _currentTimer.setupSec + val);
+      _currentTimer = _currentTimer?.copyWith(setupSec: _currentTimer!.setupSec + val > 59 ? 0 : _currentTimer!.setupSec + val < 0 ? 59 : _currentTimer!.setupSec + val);
     }
     notifyListeners();
   }
@@ -87,11 +108,11 @@ class TimerController extends ChangeNotifier {
    * */
   modifyCheckbox(String type, bool val){
     if(type == 's'){
-      _currentTimer = _currentTimer.copyWith(startCountdownYn : val);
+      _currentTimer = _currentTimer!.copyWith(startCountdownYn : val);
     } else if(type == 'i'){
-      _currentTimer = _currentTimer.copyWith(intervalCountdownYn : val);
+      _currentTimer = _currentTimer!.copyWith(intervalCountdownYn : val);
     } else if(type == 'e'){
-      _currentTimer = _currentTimer.copyWith(endCountdownYn : val);
+      _currentTimer = _currentTimer!.copyWith(endCountdownYn : val);
     }
     notifyListeners();
   }
@@ -118,7 +139,7 @@ class TimerController extends ChangeNotifier {
       // _currentTimer = _currentTimer.copyWith(startCountdownYn : val);
     } else if(type == 'e'){
       print('종료 카운트다운 상세설정');
-      _currentTimer = _currentTimer.copyWith(endCountdownValue : time, endCountdownInterval : interval, endCountdownType : alarmType);
+      _currentTimer = _currentTimer!.copyWith(endCountdownValue : time, endCountdownInterval : interval, endCountdownType : alarmType);
     }
   }
 

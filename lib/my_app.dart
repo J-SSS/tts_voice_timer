@@ -61,6 +61,7 @@ class MyAppMain extends StatelessWidget {
     TimerModel timerModel = TimerModel();
     context.read<TimerController>().setCurrentTimer = timerModel;
     await context.read<TimerController>().assignPresetModel();
+    await context.read<TimerController>().assignPresetDataList();
   }
 
   @override

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
 import 'package:provider/provider.dart';
 import 'package:tts_voice_timer/models/preset_model.dart';
+import 'package:tts_voice_timer/models/timer_model.dart';
 import '../../../utils/size_util.dart';
 import '../../provider/timer_controller.dart';
 
@@ -18,8 +19,8 @@ class _MainToolbarState extends State<CommonPresetBar> {
 
   @override
   Widget build(BuildContext context) {
-    PresetModel? presetModel = context.read<TimerController>().currentPreset;
-    print(presetModel?.presetName);
+    List<PresetModel> presetList = context.read<TimerController>().presetDataList;
+    int presetListLength = presetList.length;
 
     return Container(
         width: SizeUtil().sw,
@@ -40,18 +41,23 @@ class _MainToolbarState extends State<CommonPresetBar> {
             ),
           ],
         ),
-        child: Container(
-          height: SizeUtil().sh10,
-          child: ListView.builder( // todo 스크롤 위치 기억할 수 있도록 수정하기
+        child: ListView.builder( // todo 스크롤 위치 기억할 수 있도록 수정하기
             scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
             padding: EdgeInsets.symmetric(horizontal: 10),
-            itemCount: 8, // 예시로 8개의 타이머 표시
+            itemCount: presetListLength,
             itemBuilder: (context, index) {
-              // 타이머 시간 계산 (5분씩 증가)
-              int minutes = (index + 1) * 5;
-              String hours = (minutes ~/ 60).toString().padLeft(2, '0');
-              String mins = (minutes % 60).toString().padLeft(2, '0');
-              String timeText = '${hours}:${mins}:00';
+
+            TimerModel? timerModel = presetList[index].timerModel;
+
+
+
+          String? hour = timerModel?.setupHour.toString().padLeft(2, '0');
+              String? min = timerModel?.setupMin.toString().padLeft(2, '0');
+              String? sec = timerModel?.setupSec.toString().padLeft(2, '0');
+              String timeText = presetList[index].presetName.isNotEmpty
+                  ? presetList[index].presetName
+                  : '$hour:$min:$sec';
 
               // 색상 순환
               Color dotColor = index % 4 == 0
@@ -62,12 +68,13 @@ class _MainToolbarState extends State<CommonPresetBar> {
                           ? Colors.green
                           : Colors.purple;
 
-              return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 3, vertical: 15),
+              return Container( // todo ListView 부모요소의 사이즈를 바꿔줘야함
+                // height: SizeUtil().sh01,
+                // width: SizeUtil().sw20 * 2,
+                padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 15),
                 child: OutlinedButton.icon(
                   onPressed: () {
-                    // 타이머 선택 처리
+                    context.read<TimerController>().assignCurrentPreset(presetList[index]);
                   },
                   icon: Icon(MaterialCommunityIcons.circle,
                       size: 15, color: dotColor),
@@ -80,6 +87,6 @@ class _MainToolbarState extends State<CommonPresetBar> {
               );
             },
           ),
-        ));
+        );
   }
 }
