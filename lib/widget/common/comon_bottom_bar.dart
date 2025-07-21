@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
+import 'package:tts_voice_timer/screen/test_screen.dart';
 import 'package:tts_voice_timer/widget/list_dialog.dart';
 import '../../../utils/app_utils.dart';
 import '../../../utils/size_util.dart';
@@ -69,8 +70,12 @@ class _MainBottomBarState extends State<CommonBottomBar> {
                     TextButton( /** 루프 설정 버튼 */
                         onPressed: () {
                           // context.read<TimerController>().setLoopBtn = 'set';
-                          showOverlayInfo(context,"메시지");
+                          // showOverlayInfo(context,"메시지");
                           showOverlayInfo(context,"초기화");
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SoundTestApp()), // 설정 화면
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           shape: const CircleBorder(),

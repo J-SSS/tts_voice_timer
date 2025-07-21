@@ -38,10 +38,13 @@ dependencies:
   numberpicker: ^2.1.2 # Numberpicker
   path: ^1.8.3 # 파일 및 디렉토리 경로 처리(플랫폼 간 경로 차이 처리)
   sqflite: ^2.0.0 # SQLite 데이터베이스 라이브러리
+#  flutter_beep: ^1.0.0 # Flutter에서 소리 재생을 위한 라이브러리
+  neo_beep: ^1.0.0 # 크로스플랫폼(안드로이드·iOS)에서 비프음 뿐 아니라 진동(Haptic)도 지원하는 가벼운 플러그인
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+
 
 
 
