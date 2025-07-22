@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:my_time_timer/manager/db_manager.dart';
@@ -81,7 +82,16 @@ Future<void> main() async {
   //     builder: (context) => MyApp(), // Wrap your app
   //   ),);
   // });
-  runApp(MyApp());
+  // runApp(MyApp());
+
+  runApp(ScreenUtilInit(
+    designSize: const Size(411.4, 867.4), // 기준 화면 크기
+    minTextAdapt: true,
+    splitScreenMode: true,
+    builder: (context, child) {
+      return MyApp();
+    },
+  ));
 }
 
 

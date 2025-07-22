@@ -20,13 +20,20 @@ class TimerAlarmConsole extends StatefulWidget {
 }
 
 class _MainToolbarState extends State<TimerAlarmConsole> {
+  bool _isChanged = false; // 변경 여부
+  TimerModel? _originTimerModel; // 값 비교용 원본
 
   @override
   Widget build(BuildContext context) {
     TimerModel timerModel = context.select((TimerController T) => T.currentTimer);
+    print('최초 $_originTimerModel');
+    _originTimerModel ??= timerModel; // 값 비교용 원본 할당
+
+
     bool startCountdownYn = timerModel.startCountdownYn;
     bool intervalCountdownYn = timerModel.intervalCountdownYn;
     bool endCountdownYn = timerModel.endCountdownYn;
+
 
 
 
@@ -36,7 +43,6 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
           biteRadius: SizeUtil().sh15 * 0.4,
           // biteRadius: 50,
           elevation: 5.0,
-          // color: Colors.yellow.withOpacity(0.9),
           color: Colors.white,
           child: Container( // 완전한 네모 영역
               decoration: BoxDecoration(
@@ -72,6 +78,10 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                               Checkbox(
                                 value: startCountdownYn,
                                 onChanged: (bool? value) {
+                                  print('이전값');
+                                  print(_originTimerModel?.startCountdownYn);
+                                        // _originTimerModel?.startCountdownYn = !startCountdownYn; // 원본 값 변경
+                                  _isChanged = true;
                                   context.read<TimerController>().modifyCheckbox('s', !startCountdownYn);
                                 },
                               ),
@@ -201,13 +211,14 @@ class _MainToolbarState extends State<TimerAlarmConsole> {
                             size: 25,
                             color: Colors.blueGrey.withOpacity(0.5),
                           ),
-                          label:   Text("Save",
+                          label:   Text("저장",
                               style: TextStyle(
                                   fontSize: SizeUtil().sh075 / 4,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.blueGrey),
                               textAlign: TextAlign.center),
                           style: OutlinedButton.styleFrom(
+                            backgroundColor: _isChanged ? Colors.grey : Colors.white,
                             padding: EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 2),
                             // 내부 여백 줄이기

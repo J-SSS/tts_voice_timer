@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:provider/provider.dart';
+import 'package:tts_voice_timer/main.dart';
 import 'package:tts_voice_timer/models/timer_model.dart';
 import '../../../utils/size_util.dart';
 import '../../models/preset_model.dart';
@@ -29,17 +31,17 @@ class _MainToolbarState extends State<TimerTimeConsole> {
     return Container(
         width: SizeUtil().sw,
         height: SizeUtil().sh40,
-        margin: EdgeInsets.fromLTRB(5, 10, 5, 10),
-        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+        margin: EdgeInsets.fromLTRB(0, 10.sp, 0, 10.sp),
+        padding: EdgeInsets.fromLTRB(0, 10.sp, 0, 10.sp),
         // alignment: Alignment.topCenter,
         decoration: BoxDecoration(
-          color: Colors.white54.withOpacity(0.8),
+          color: Colors.white,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              color: Colors.blueGrey.withOpacity(0.3),
+              color: Colors.blueGrey.withOpacity(0.5),
               spreadRadius: 3,
-              blurRadius: 1,
+              blurRadius: 3,
               offset: const Offset(0, 3),
             ),
           ],
@@ -154,31 +156,31 @@ class _MainToolbarState extends State<TimerTimeConsole> {
                 // Text(context.watch<TimerController>().currentTimer.setupTime.toString(),
                 Text(frmtHour!,
                     style: TextStyle(
-                        fontSize: SizeUtil().sh10 * 0.90,
+                        fontSize: 60.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.blueGrey),
                     textAlign: TextAlign.center),
                 Text(":",
                     style: TextStyle(
-                        fontSize: SizeUtil().sh05,
+                        fontSize: 50.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.blueGrey),
                     textAlign: TextAlign.center),
                 Text(frmtMin!,
                     style: TextStyle(
-                        fontSize: SizeUtil().sh10 * 0.9,
+                        fontSize: 60.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.blueGrey),
                     textAlign: TextAlign.center),
                 Text(":",
                     style: TextStyle(
-                        fontSize: SizeUtil().sh05,
+                        fontSize: 50.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.blueGrey),
                     textAlign: TextAlign.center),
                 Text(frmtSec!,
                     style: TextStyle(
-                        fontSize: SizeUtil().sh10 * 0.9,
+                        fontSize: 60.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.blueGrey),
                     textAlign: TextAlign.center),

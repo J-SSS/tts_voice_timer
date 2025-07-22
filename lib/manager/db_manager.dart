@@ -106,7 +106,7 @@ class DbManager {
     // db.insert(_tableConfig, {}); // tvt_config
     await db.insert(_tablePreset, {
       "presetId" : 0,
-      "presetType" : 0,
+      "presetType" : 1,
       "sortOrder" : 0,
       "presetTitle" : "00:05:00",
       "presetColor" : "0",
@@ -114,7 +114,7 @@ class DbManager {
     }); // tvt_preset
     await db.insert(_tablePreset, {
       "presetId" : 1,
-      "presetType" : 0,
+      "presetType" : 1,
       "sortOrder" : 1,
       "presetTitle" : "00:10:00",
       "presetColor" : "4",
