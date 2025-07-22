@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter_beep/flutter_beep.dart';
-import 'package:neo_beep/neo_beep.dart' ;
+// import 'package:neo_beep/neo_beep.dart' ;
 
 
 
@@ -71,33 +71,33 @@ class SoundTestPage extends StatelessWidget {
       // ),
 
 
-      body: Column(
-        children: <Widget>[
-          ElevatedButton(
-            child: Text("Beep Success"),
-            onPressed: () => NeoBeep.beep(),
-          ),
-          ElevatedButton(
-            child: Text("Beep Fail"),
-            onPressed: () => NeoBeep.beep(false),
-          ),
-          ElevatedButton(
-            child: Text("Beep Android Custom"),
-            onPressed: () =>
-                NeoBeep.playSysSound(AndroidSoundIDs.TONE_CDMA_ABBR_ALERT),
-          ),
-          ElevatedButton(
-            child: Text("Beep something"),
-            onPressed: () => NeoBeep.playSysSound(AndroidSoundIDs.TONE_CDMA_CALL_SIGNAL_ISDN_PAT7),
-          ),
-          ElevatedButton(
-            child: Text("TONE_CDMA_ANSWER"),
-            onPressed: () => NeoBeep.playSysSound(AndroidSoundIDs.TONE_CDMA_ANSWER),
-          ),
-          ElevatedButton(
-            child: Text(""),
-            onPressed: () => NeoBeep.playSysSound(26),
-          ),
+      // body: Column(
+      //   children: <Widget>[
+      //     ElevatedButton(
+      //       child: Text("Beep Success"),
+      //       onPressed: () => NeoBeep.beep(),
+      //     ),
+      //     ElevatedButton(
+      //       child: Text("Beep Fail"),
+      //       onPressed: () => NeoBeep.beep(false),
+      //     ),
+      //     ElevatedButton(
+      //       child: Text("Beep Android Custom"),
+      //       onPressed: () =>
+      //           NeoBeep.playSysSound(AndroidSoundIDs.TONE_CDMA_ABBR_ALERT),
+      //     ),
+      //     ElevatedButton(
+      //       child: Text("Beep something"),
+      //       onPressed: () => NeoBeep.playSysSound(AndroidSoundIDs.TONE_CDMA_CALL_SIGNAL_ISDN_PAT7),
+      //     ),
+      //     ElevatedButton(
+      //       child: Text("TONE_CDMA_ANSWER"),
+      //       onPressed: () => NeoBeep.playSysSound(AndroidSoundIDs.TONE_CDMA_ANSWER),
+      //     ),
+      //     ElevatedButton(
+      //       child: Text(""),
+      //       onPressed: () => NeoBeep.playSysSound(26),
+      //     ),
 
           // 25
 
@@ -106,8 +106,8 @@ class SoundTestPage extends StatelessWidget {
 
 
 
-        ],
-      ),
+        // ],
+      // ),
     );
   }
 }
